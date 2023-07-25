@@ -112,6 +112,7 @@ class CampaignsId(Resource):
                 return make_response(campaign.to_dict(), 202)
             except:
                 return make_response({'errors':['Validation errors']}, 402)
+        return make_response({"error":"Campaign not found"}, 404)        
 
 class Characters(Resource):
     def post(self):
