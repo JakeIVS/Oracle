@@ -89,6 +89,29 @@ class Campaigns(Resource):
         except:
             return make_response({'errors': ['validation errors']}, 401)
 
+class CampaignsId(Resource):
+    def get(self, id):
+        campaign = Campaign.query.filter(Campaign.id == id).first()
+        if campaign:
+            return make_response(campaign.to_dict(), 200)
+        return make_response({'error':'Campaign not found'}, 404)
+    def delete(self, id):
+        campaign = Campaign.query.filter(Campaign.id == id).first()
+        if campaign:
+            campaign.delete()
+            return make_response({},204)
+        return({'error':'Campaign not found'}, 404)
+    def patch(self, id):
+        campaign = Campaign.query.filter(Campaign.id == id).first()
+        if campaign:
+            try:
+                data = request.get_json()
+                for attr in data:
+                    setattr(campaign, attr, data[attr])
+                db.ssession.commit()
+                return make_response(campaign.to_dict(), 202)
+            except:
+                return make_response({'errors':['Validation errors']}, 402)
 api.add_resource(Signup, '/signup')
 api.add_resource(CheckSession, '/check_session')
 api.add_resource(Login, '/login')
@@ -96,6 +119,7 @@ api.add_resource(Logout, '/logout')
 api.add_resource(Spells, '/spells')
 api.add_resource(SpellsId, '/spells/<int:id>')
 api.add_resource(Campaigns, '/campaigns')
+api.add_resource(CampaignsId, '/campaigns/<int:id>')
 
 
 
