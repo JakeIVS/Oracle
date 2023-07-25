@@ -62,9 +62,20 @@ class Character(db.Model, SerializerMixin):
     tool_proficiencies = db.Column(db.String)
 
 
-
-
-
-
 class Campaign(db.Model, SerializerMixin):
     pass
+
+class Spell(db.Model, SerializerMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    index = db.Column(db.String)
+    name = db.Column(db.String)
+    level = db.Column(db.Integer)
+    desc = db.Column(db.String)
+    higher_level = db.Column(db.String)
+    spell_range = db.Column(db.String)
+    duration = db.Column(db.String)
+    components = db.Column(db.String)
+    material = db.Column(db.String)
+    is_ritual = db.Column(db.Integer)
+    requires_concentration = db.Column(db.Integer)
+    casting_time = db.Column(db.String)
