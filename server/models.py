@@ -13,6 +13,11 @@ from config import db, bcrypt
 # flask db revision --autogenerate -m"create tables"
 # flask db upgrade head
 
+known_spell = db.Table(
+    'known_spells',
+    db.Column('character_id', db.Integer, db.ForeignKey('character.id')),
+    db.Column('spell_id', db.Integer, db.ForeignKey('spell.id'))
+    )
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -62,7 +67,8 @@ class Character(db.Model, SerializerMixin):
     weapon_proficiencies = db.Column(db.String)
     tool_proficiencies = db.Column(db.String)
 
-    known_spells = db.relationship('KnownSpell', back_populates='character', cascade='all, delete-orphan')
+    spells = db.relationship('Spell', secondary=known_spell, backref='characters', cascade='all, delete-orphan')
+
 
 class Campaign(db.Model, SerializerMixin):
     __tablename__ = 'campaigns'
@@ -92,7 +98,6 @@ class Spell(db.Model, SerializerMixin):
     casting_time = db.Column(db.String)
     url = db.Column(db.String)
 
-    known_spells = db.relationship('KnownSpell', back_populates='spell', cascade='all, delete-orphan')
 
 
 class Item(db.Model, SerializerMixin):
@@ -110,13 +115,3 @@ class Item(db.Model, SerializerMixin):
     atk_range = db.Column(db.String)
     cost = db.Column(db.String)
     rarity = db.Column(db.String)
-
-class KnownSpell(db.Model, SerializerMixin):
-    __tablenamem__ = 'known_spells'
-
-    id = db.Column(db.Integer, primary_key=True)
-    character_id = db.Column(db.Integer, db.ForeignKey('characters.id'))
-    spell_id = db.Column(db.Integer, db.ForeignKey('spells.id'))
-
-    character = db.relationship('Character', back_populates='known_spells')
-    spell = db.relationship('Spell', back_populates='known_spells')
