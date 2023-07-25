@@ -15,8 +15,8 @@ from config import db, bcrypt
 
 known_spell = db.Table(
     'known_spells',
-    db.Column('character_id', db.Integer, db.ForeignKey('character.id')),
-    db.Column('spell_id', db.Integer, db.ForeignKey('spell.id'))
+    db.Column('character_id', db.Integer, db.ForeignKey('characters.id')),
+    db.Column('spell_id', db.Integer, db.ForeignKey('spells.id'))
     )
 
 class User(db.Model, SerializerMixin):
@@ -67,7 +67,7 @@ class Character(db.Model, SerializerMixin):
     weapon_proficiencies = db.Column(db.String)
     tool_proficiencies = db.Column(db.String)
 
-    spells = db.relationship('Spell', secondary=known_spell, backref='characters', cascade='all, delete-orphan')
+    spells = db.relationship('Spell', secondary=known_spell, backref='characters', cascade='all')
 
 
 class Campaign(db.Model, SerializerMixin):
@@ -97,6 +97,10 @@ class Spell(db.Model, SerializerMixin):
     requires_concentration = db.Column(db.Integer)
     casting_time = db.Column(db.String)
     url = db.Column(db.String)
+
+    def __repr__ (self):
+        return f"{self.name} (Level{self.level}, {self.casting_time}, Range: {self.spell_range}, Duration: {self.duration}): {self.desc}, {self.higher_level} "
+
 
 
 
