@@ -112,6 +112,9 @@ class CampaignsId(Resource):
                 return make_response(campaign.to_dict(), 202)
             except:
                 return make_response({'errors':['Validation errors']}, 402)
+
+
+
 api.add_resource(Signup, '/signup')
 api.add_resource(CheckSession, '/check_session')
 api.add_resource(Login, '/login')
