@@ -28,7 +28,8 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String, unique=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
-    _password_hash = db.Column(db.String)
+    _password_hash = db.Column(db.String, nullable=False)
+    theme = db.Column(db.String)
 
     characters = db.relationship('Character', backref='owner')
     campaigns = db.relationship('Campaign', backref='dm')
