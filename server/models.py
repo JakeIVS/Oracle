@@ -40,6 +40,7 @@ class Character(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     campaign_id = db.Column(db.Integer)
+    owner_id = db.Column(db.Integer)
     name = db.Column(db.String)
     race = db.Column(db.String)
     gender = db.Column(db.String)
@@ -61,9 +62,10 @@ class Character(db.Model, SerializerMixin):
     weapon_proficiencies = db.Column(db.String)
     tool_proficiencies = db.Column(db.String)
 
-
 class Campaign(db.Model, SerializerMixin):
-    
+    __tablename__ = 'campaigns'
+
+
     id = db.Column(db.Integer, primary_key=True)
     dm_id = db.Column(db.Integer)
     name = db.Column(db.String)
@@ -87,3 +89,23 @@ class Spell(db.Model, SerializerMixin):
     requires_concentration = db.Column(db.Integer)
     casting_time = db.Column(db.String)
     url = db.Column(db.String)
+
+class Item(db.Model, SerializerMixin):
+
+    __tablename__ = 'items'
+
+    id = db.Column(db.Integer, primary_key=True)
+    index=db.Column(db.String)
+    name = db.Column(db.String)
+    desc = db.Column(db.String)
+    weight = db.Column(db.Integer)
+    damage = db.Column(db.String)
+    weapon_range = db.Column(db.String)
+    weapon_category = db.Column(db.String)
+    atk_range = db.Column(db.String)
+    dmg_type = db.Column(db.String)
+    cost = db.Column(db.String)
+    rarity = db.Column(db.String)
+
+
+    __tablename__ ,
