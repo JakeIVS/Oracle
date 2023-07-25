@@ -19,7 +19,8 @@ class Signup(Resource):
             new_user = User(
                 email = data['email'],
                 first_name = data['first_name'],
-                last_name = data['last_name']
+                last_name = data['last_name'],
+                theme = 'default',
             )
             new_user.password_hash = data['password']
             db.session.add(new_user)
@@ -74,16 +75,19 @@ class SpellsId(Resource):
 
 class Campaigns(Resource):
     def post(self):
-        data = request.get_json()
-        user_id = session['user_id']
-        campaign = Campaign(
-            dm_id = user_id,
-            name = data['name'],
-            join_code = data['join_code']
-        )
-        db.session.add(campaign)
-        db.session.commit()
-        return make_response(campaign.to_dict(), 201)
+        try:
+            data = request.get_json()
+            user_id = session['user_id']
+            campaign = Campaign(
+                dm_id = user_id,
+                name = data['name'],
+                join_code = data['join_code']
+            )
+            db.session.add(campaign)
+            db.session.commit()
+            return make_response(campaign.to_dict(), 201)
+        except:
+            return make_response({'errors': ['validation errors']}, 401)
 
 api.add_resource(Signup, '/signup')
 api.add_resource(CheckSession, '/check_session')
