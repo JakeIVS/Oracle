@@ -153,7 +153,7 @@ class CharactersId(Resource):
             except:
                 return make_response({'errors':['Validation errors']}, 402)
         return make_response({"error":"Character not found"}, 404)        
-        
+
 
 api.add_resource(Signup, '/signup')
 api.add_resource(CheckSession, '/check_session')
