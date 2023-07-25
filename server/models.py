@@ -43,6 +43,8 @@ class User(db.Model, SerializerMixin):
 class Character(db.Model, SerializerMixin):
     __tablename__ = 'characters'
 
+    serialize_rules = ('-spells.characters',)
+
     id = db.Column(db.Integer, primary_key=True)
     campaign_id = db.Column(db.Integer, db.ForeignKey('campaigns.id'))
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -82,6 +84,7 @@ class Campaign(db.Model, SerializerMixin):
 class Spell(db.Model, SerializerMixin):
     __tablename__ = 'spells'
 
+    serialize_rules = ('-characters.spells',)
 
     id = db.Column(db.Integer, primary_key=True)
     index = db.Column(db.String)
@@ -117,4 +120,3 @@ class Item(db.Model, SerializerMixin):
     weapon_category = db.Column(db.String)
     atk_range = db.Column(db.String)
     cost = db.Column(db.String)
-    rarity = db.Column(db.String)
