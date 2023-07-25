@@ -108,7 +108,7 @@ class CampaignsId(Resource):
                 data = request.get_json()
                 for attr in data:
                     setattr(campaign, attr, data[attr])
-                db.ssession.commit()
+                db.session.commit()
                 return make_response(campaign.to_dict(), 202)
             except:
                 return make_response({'errors':['Validation errors']}, 402)
@@ -139,6 +139,20 @@ class Characters(Resource):
         except:
             return make_response({'errors':['Validation errors']}, 401)
 
+class CharactersId(Resource):
+    def patch(self, id):
+        character = Character.query.filter(Character.id == id).first()
+        if character:
+            try:
+                data = request.get_json()
+                for attr in data:
+                    setattr(character, attr, data[attr])
+                db.session.commit()
+                return make_response(character.to_dict(), 202)
+            except:
+                return make_response({'errors':['Validation errors']}, 402)
+        return make_response({"error":"Character not found"}, 404)        
+        
 
 api.add_resource(Signup, '/signup')
 api.add_resource(CheckSession, '/check_session')
@@ -149,6 +163,7 @@ api.add_resource(SpellsId, '/spells/<int:id>')
 api.add_resource(Campaigns, '/campaigns')
 api.add_resource(CampaignsId, '/campaigns/<int:id>')
 api.add_resource(Characters, '/characters')
+api.add_resource(CharactersId, '/characters/<int:id>')
 
 
 
