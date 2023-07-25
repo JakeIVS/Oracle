@@ -113,6 +113,31 @@ class CampaignsId(Resource):
             except:
                 return make_response({'errors':['Validation errors']}, 402)
 
+class Characters(Resource):
+    def post(self):
+        try:
+            data = request.get_json()
+            user_id = session['user_id']
+            character = Character(
+                owner_id = user_id,
+                name = data['name'],
+                race = data['race'],
+                gender = data['gender'],
+                character_class = data['character_class'],
+                level = data['level'],
+                strength_score = data['strength_score'],
+                dexterity_score = data['dexterity_score'],
+                constitution_score = data['constitution_score'],
+                intelligence_score = data['intelligence_score'],
+                wisdom_score = data['wisdom_score'],
+                charisma_score = data['charisma_score'],
+                speed = 30,
+            )
+            db.session.add(character)
+            db.session.commit()
+            return make_response(character.to_dict(), 201)
+        except:
+            return make_response({'errors':['Validation errors']}, 401)
 
 
 api.add_resource(Signup, '/signup')
@@ -123,6 +148,7 @@ api.add_resource(Spells, '/spells')
 api.add_resource(SpellsId, '/spells/<int:id>')
 api.add_resource(Campaigns, '/campaigns')
 api.add_resource(CampaignsId, '/campaigns/<int:id>')
+api.add_resource(Characters, '/characters')
 
 
 
