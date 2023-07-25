@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, abort, make_response, session
 from flask_restful import Resource
-from models import User, Show, Rental, ArtistBooking, Review
+from models import *
 from config import app, db, api
 from flask_migrate import Migrate  # Import Flask-Migrate
 from flask_cors import CORS
