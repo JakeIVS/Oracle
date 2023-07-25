@@ -60,7 +60,18 @@ class Logout(Resource):
         else:
             return {"error": "No user logged in currently"}, 401
 
+class Spells(Resource):
+    def get(self):
+        spells = Spell.query.all()
+        return make_response([spell.to_dict() for spell in spells], 200)
+
 api.add_resource(Signup, '/signup')
 api.add_resource(CheckSession, '/check_session')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
+api.add_resource(Spells, '/spells')
+
+
+
+if __name__ == '__main__':
+    app.run(port=5555, debug=True)
