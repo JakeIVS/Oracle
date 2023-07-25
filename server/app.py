@@ -72,12 +72,26 @@ class SpellsId(Resource):
             return make_response({'error': 'Spell not found'}, 404)
         return make_response(spell.to_dict(), 200)
 
+class Campaigns(Resource):
+    def post(self):
+        data = request.get_json()
+        user_id = session['user_id']
+        campaign = Campaign(
+            dm_id = user_id,
+            name = data['name'],
+            join_code = data['join_code']
+        )
+        db.session.add(campaign)
+        db.session.commit()
+        return make_response(campaign.to_dict(), 201)
+
 api.add_resource(Signup, '/signup')
 api.add_resource(CheckSession, '/check_session')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 api.add_resource(Spells, '/spells')
 api.add_resource(SpellsId, '/spells/<int:id>')
+api.add_resource(Campaigns, '/campaigns')
 
 
 
