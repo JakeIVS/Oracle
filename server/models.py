@@ -22,11 +22,16 @@ known_spell = db.Table(
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
+    serialize_rules = ('-campaigns.dm', '-characters.owner')
+
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String, unique=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     _password_hash = db.Column(db.String)
+
+    characters = db.relationship('Character', backref='owner')
+    campaigns = db.relationship('Campaign', backref='dm')
 
     @hybrid_property
     def password_hash(self):
@@ -43,7 +48,7 @@ class User(db.Model, SerializerMixin):
 class Character(db.Model, SerializerMixin):
     __tablename__ = 'characters'
 
-    serialize_rules = ('-spells.characters',)
+    serialize_rules = ('-spells.characters', '-owner.characters', '-campaign.characters')
 
     id = db.Column(db.Integer, primary_key=True)
     campaign_id = db.Column(db.Integer, db.ForeignKey('campaigns.id'))
@@ -71,15 +76,17 @@ class Character(db.Model, SerializerMixin):
 
     spells = db.relationship('Spell', secondary=known_spell, backref='characters', cascade='all')
 
-
 class Campaign(db.Model, SerializerMixin):
     __tablename__ = 'campaigns'
 
+    serialize_rules = ('-dm.campaigns', '-characters.campaign')
 
     id = db.Column(db.Integer, primary_key=True)
     dm_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String)
     join_code = db.Column(db.String)
+
+    characters = db.relationship('Character', backref='campaign')
 
 class Spell(db.Model, SerializerMixin):
     __tablename__ = 'spells'
