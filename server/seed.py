@@ -35,8 +35,16 @@ def seed_spells():
     print(f'Complete: {len(seeded_spells)} spells seeded.')
 
 
-def seed_items():
-    pass
+# uncomment below for item seeding
+
+# def seed_items():
+#     print('Generating items...')
+#     response = requests.get('https://www.dnd5eapi.co/api/equipment').json()
+#     item_list = response['results']
+#     seeded_items = []
+#     for item in item_list:
+#         url = item['url']
+
 
 if __name__ == '__main__':
     with app.app_context():
