@@ -65,11 +65,20 @@ class Spells(Resource):
         spells = Spell.query.all()
         return make_response([spell.to_dict() for spell in spells], 200)
 
+class SpellsId(Resource):
+    def get(self, id):
+        spell = Spell.query.filter(Spell.id == id).first()
+        if not spell:
+            return make_response({'error': 'Spell not found'}, 404)
+        return make_response(spell.to_dict(), 200)
+
 api.add_resource(Signup, '/signup')
 api.add_resource(CheckSession, '/check_session')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 api.add_resource(Spells, '/spells')
+api.add_resource(SpellsId, '/spells/<int:id>')
+
 
 
 
