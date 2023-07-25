@@ -39,8 +39,8 @@ class Character(db.Model, SerializerMixin):
     __tablename__ = 'characters'
 
     id = db.Column(db.Integer, primary_key=True)
-    campaign_id = db.Column(db.Integer)
-    owner_id = db.Column(db.Integer)
+    campaign_id = db.Column(db.Integer, db.ForeignKey('campaigns.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String)
     race = db.Column(db.String)
     gender = db.Column(db.String)
@@ -62,12 +62,14 @@ class Character(db.Model, SerializerMixin):
     weapon_proficiencies = db.Column(db.String)
     tool_proficiencies = db.Column(db.String)
 
+    known_spells = db.relationship('KnownSpell', back_populates='character', cascade='all, delete-orphan')
+
 class Campaign(db.Model, SerializerMixin):
     __tablename__ = 'campaigns'
 
 
     id = db.Column(db.Integer, primary_key=True)
-    dm_id = db.Column(db.Integer)
+    dm_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String)
     join_code = db.Column(db.String)
 
@@ -90,8 +92,10 @@ class Spell(db.Model, SerializerMixin):
     casting_time = db.Column(db.String)
     url = db.Column(db.String)
 
-class Item(db.Model, SerializerMixin):
+    known_spells = db.relationship('KnownSpell', back_populates='spell', cascade='all, delete-orphan')
 
+
+class Item(db.Model, SerializerMixin):
     __tablename__ = 'items'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -100,12 +104,19 @@ class Item(db.Model, SerializerMixin):
     desc = db.Column(db.String)
     weight = db.Column(db.Integer)
     damage = db.Column(db.String)
+    dmg_type = db.Column(db.String)
     weapon_range = db.Column(db.String)
     weapon_category = db.Column(db.String)
     atk_range = db.Column(db.String)
-    dmg_type = db.Column(db.String)
     cost = db.Column(db.String)
     rarity = db.Column(db.String)
 
+class KnownSpell(db.Model, SerializerMixin):
+    __tablenamem__ = 'known_spells'
 
-    __tablename__ ,
+    id = db.Column(db.Integer, primary_key=True)
+    character_id = db.Column(db.Integer, db.ForeignKey('characters.id'))
+    spell_id = db.Column(db.Integer, db.ForeignKey('spells.id'))
+
+    character = db.relationship('Character', back_populates='known_spells')
+    spell = db.relationship('Spell', back_populates='known_spells')
