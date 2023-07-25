@@ -63,9 +63,16 @@ class Character(db.Model, SerializerMixin):
 
 
 class Campaign(db.Model, SerializerMixin):
-    pass
+    
+    id = db.Column(db.Integer, primary_key=True)
+    dm_id = db.Column(db.Integer)
+    name = db.Column(db.String)
+    join_code = db.Column(db.String)
 
 class Spell(db.Model, SerializerMixin):
+    __tablename__ = 'spells'
+
+
     id = db.Column(db.Integer, primary_key=True)
     index = db.Column(db.String)
     name = db.Column(db.String)
@@ -79,3 +86,4 @@ class Spell(db.Model, SerializerMixin):
     is_ritual = db.Column(db.Integer)
     requires_concentration = db.Column(db.Integer)
     casting_time = db.Column(db.String)
+    url = db.Column(db.String)
