@@ -92,14 +92,13 @@ class Spell(db.Model, SerializerMixin):
     spell_range = db.Column(db.String)
     duration = db.Column(db.String)
     components = db.Column(db.String)
-    material = db.Column(db.String)
     is_ritual = db.Column(db.Integer)
     requires_concentration = db.Column(db.Integer)
     casting_time = db.Column(db.String)
     url = db.Column(db.String)
 
     def __repr__ (self):
-        return f"{self.name} (Level{self.level}, {self.casting_time}, Range: {self.spell_range}, Duration: {self.duration}): {self.desc}, {self.higher_level} "
+        return f"{self.name} (Level {self.level}, {self.casting_time}, Range: {self.spell_range}, Duration: {self.duration}): {self.desc}, {self.higher_level} "
 
 
 
