@@ -1,6 +1,6 @@
 function CharacterSheet() {
   return (
-    <div className="grid aspect-csheet h-screen grid-cols-9 gap-1">
+    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1">
       <div className="col-span-3 bg-green-800">Name</div>
       <div className="bg-green-800">Speed</div>
       <div className="bg-green-800">AC</div>
