@@ -1,14 +1,17 @@
 function Header() {
   return (
-    <div className="absolute left-0 top-0 flex h-16 w-screen justify-between bg-yellow-950 px-3 pt-3">
-      <h1 className="text-4xl font-bold text-white">Oracle</h1>
+    <div className="absolute left-0 top-0 flex h-16 w-screen justify-center bg-primary px-3 pt-3">
+      <h1 className="absolute left-2 font-serif text-4xl font-bold text-n-light">
+        Oracle
+      </h1>
+      <nav>Nav</nav>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="h-10 w-10 stroke-white stroke-1 hover:stroke-2"
+        className="absolute right-2 h-10 w-10 stroke-n-light stroke-1 transition-all duration-300 hover:stroke-white"
       >
         <path
           strokeLinecap="round"
