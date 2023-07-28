@@ -1,12 +1,13 @@
-import { Formik, Field, Form, ErrorMessage, useField } from 'formik';
+import { Formik, Field, Form, ErrorMessage, useField, useFormik } from 'formik';
 import * as Yup from 'yup';
 
 function SignupForm() {
-  const field = '';
-  const errorField = '';
+  const field = 'outlin rounded bg-gradient-to-t from-slate-400 to-white';
+  const errorField =
+    'rounded bg-gradient-to-t from-red-300 to-red-200 outline-double outline-red-600';
 
   return (
-    <div className="h-full bg-gradient-to-t from-primary to-secondary">
+    <div className="flex h-full w-full justify-center bg-gradient-to-t from-primary to-secondary">
       <Formik
         initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
         validationSchema={Yup.object({
@@ -27,13 +28,13 @@ function SignupForm() {
           }, 400);
         }}
       >
-        <Form className="flex flex-col place-content-center justify-center px-[30%] pt-10">
+        <Form className=" col-start-2 flex w-72 flex-col place-content-center pt-10">
           <h1 className="pb-6 text-center font-serif text-2xl font-semibold text-white">
             {' '}
             Sign Up
           </h1>
           <label htmlFor="firstName">First Name</label>
-          <Field name="firstName" type="text" />
+          <Field name="firstName" type="text" className={field} />
           <ErrorMessage
             name="firstName"
             render={msg => (
@@ -41,7 +42,7 @@ function SignupForm() {
             )}
           />
           <label htmlFor="lastName">Last Name</label>
-          <Field name="lastName" type="text" />
+          <Field name="lastName" type="text" className={field} />
           <ErrorMessage
             name="lastName"
             render={msg => (
@@ -49,7 +50,7 @@ function SignupForm() {
             )}
           />
           <label htmlFor="email">Email</label>
-          <Field name="email" type="email" />
+          <Field name="email" type="email" className={field} />
           <ErrorMessage
             name="email"
             render={msg => (
@@ -57,7 +58,7 @@ function SignupForm() {
             )}
           />
           <label htmlFor="password">Password</label>
-          <Field name="password" type="password" />
+          <Field name="password" type="password" className={field} />
           <ErrorMessage
             name="password"
             render={msg => (
