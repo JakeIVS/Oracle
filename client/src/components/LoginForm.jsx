@@ -23,38 +23,40 @@ function LoginForm() {
           console.log(values);
         }}
       >
-        <Form className="col-start-2 flex w-72 flex-col ">
-          <h1 className="pb-6 text-center font-serif text-2xl font-semibold text-white">
-            Sign In
-          </h1>
-          <label htmlFor="email">Email</label>
-          <Field name="email" type="email" className={field} />
-          <ErrorMessage
-            name="email"
-            render={msg => (
-              <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
-            )}
-          />
-          <label htmlFor="password">Password</label>
-          <Field name="password" type="password" className={field} />
-          <ErrorMessage
-            name="password"
-            render={msg => (
-              <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
-            )}
-          />
-          <div className="flex flex-row justify-between">
-            <button
-              type="submit"
-              className="mt-4 w-1/3 from-secondary to-transparent p-1 text-base font-semibold text-white outline transition-all hover:bg-gradient-to-t"
-            >
+        <div className=" h-fit bg-slate-700 bg-opacity-70 p-5">
+          <Form className="col-start-2 flex w-72 flex-col ">
+            <h1 className="pb-6 text-center font-serif text-2xl font-semibold text-white">
               Sign In
-            </button>
-            <a className="mt-4 text-xs text-white hover:underline">
-              Forgot Password?
-            </a>
-          </div>
-        </Form>
+            </h1>
+            <label htmlFor="email">Email</label>
+            <Field name="email" type="email" className={field} />
+            <ErrorMessage
+              name="email"
+              render={msg => (
+                <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
+              )}
+            />
+            <label htmlFor="password">Password</label>
+            <Field name="password" type="password" className={field} />
+            <ErrorMessage
+              name="password"
+              render={msg => (
+                <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
+              )}
+            />
+            <div className="flex flex-row justify-between">
+              <button
+                type="submit"
+                className="mt-4 w-1/3 from-secondary to-transparent p-1 text-base font-semibold text-white outline transition-all hover:bg-gradient-to-t"
+              >
+                Sign In
+              </button>
+              <a className="mt-4 text-xs text-white hover:underline">
+                Forgot Password?
+              </a>
+            </div>
+          </Form>
+        </div>
       </Formik>
     </div>
   );
