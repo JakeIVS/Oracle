@@ -62,9 +62,22 @@ function SignupForm() {
           <ErrorMessage
             name="password"
             render={msg => (
-              <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
+              <div className="pb-2 text-xs text-red-600">{msg}</div>
             )}
           />
+          <div className="flex flex-row justify-between">
+            <button
+              type="submit"
+              className="mt-4 w-1/3 p-1 text-base font-semibold text-white outline"
+            >
+              Submit
+            </button>
+
+            <div className="mt-4 text-xs text-white">
+              <p>Already have an account?</p>
+              <a className="hover:underline">Sign In.</a>
+            </div>
+          </div>
         </Form>
       </Formik>
     </div>
