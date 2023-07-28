@@ -10,8 +10,13 @@ function ErrorScreen() {
         </p>
         <p className="m-3 max-w-prose">
           Click{' '}
-          <a className="font-semibold text-blue-600 hover:underline">here</a> to
-          log in or{' '}
+          <a
+            className="font-semibold text-blue-600 hover:underline"
+            href="/signin"
+          >
+            here
+          </a>{' '}
+          to log in or{' '}
           <a className="font-semibold text-blue-600 hover:underline">here</a> to
           return to the Home page
         </p>
