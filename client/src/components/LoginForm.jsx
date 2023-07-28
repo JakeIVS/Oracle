@@ -1,7 +1,7 @@
 import { Formik, Field, Form, ErrorMessage, useField, useFormik } from 'formik';
 import * as Yup from 'yup';
 
-function LoginForm() {
+function LoginForm({ user, setUser }) {
   const field = 'rounded bg-gradient-to-t from-slate-400 to-white';
   const errorField =
     'rounded bg-gradient-to-t from-red-300 to-red-200 outline-double outline-red-600';
@@ -56,6 +56,13 @@ function LoginForm() {
               </a>
             </div>
           </Form>
+          <p className="mt-2 text-xs text-white">
+            Don't have an account yet?{' '}
+            <a className="hover:underline" href="/signup">
+              Sign up
+            </a>
+            .
+          </p>
         </div>
       </Formik>
     </div>
