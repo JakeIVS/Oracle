@@ -12,7 +12,7 @@ function ErrorScreen() {
           Click{' '}
           <a
             className="font-semibold text-blue-600 hover:underline"
-            href="/signin"
+            href="/login"
           >
             here
           </a>{' '}

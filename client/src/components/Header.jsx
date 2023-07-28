@@ -1,9 +1,12 @@
 function Header() {
   return (
     <div className="absolute left-0 top-0 flex h-16 w-screen justify-center bg-primary px-3 pt-3">
-      <h1 className="absolute left-2 font-serif text-4xl font-bold text-white">
+      <a
+        href="/"
+        className="absolute left-2 font-serif text-4xl font-bold text-white"
+      >
         Oracle
-      </h1>
+      </a>
       <nav className="font-serif text-white">Nav</nav>
       <svg
         xmlns="http://www.w3.org/2000/svg"

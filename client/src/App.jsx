@@ -16,7 +16,7 @@ function App() {
       <div className="h-screen pt-16">
         <Routes>
           <Route path="/" element={<ErrorScreen />} />
-          <Route path="/signin" element={<LoginForm />} />
+          <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
         </Routes>
       </div>
