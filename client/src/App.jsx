@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './index.css';
 import CharacterSheet from './components/CharacterSheet';
 import Header from './components/Header';
@@ -12,7 +13,10 @@ function App() {
     <div>
       <Header />
       <div className="h-screen pt-16">
-        <LoginForm />
+        <Routes>
+          <Route path="/signin" element={<LoginForm />} />
+          <Route path="/signup" element={<SignupForm />} />
+        </Routes>
       </div>
     </div>
   );
