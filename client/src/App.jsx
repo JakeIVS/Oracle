@@ -6,18 +6,25 @@ import Header from './components/Header';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import ErrorScreen from './components/ErrorScreen';
+import UserDash from './components/UserDash';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
   return (
     <div>
       <Header />
       <div className="h-screen pt-16">
         <Routes>
-          <Route path="/" element={<ErrorScreen />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignupForm />} />
+          <Route path="/" element={<UserDash user={user} />} />
+          <Route
+            path="/login"
+            element={<LoginForm user={user} setUser={setUser} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignupForm user={user} setUser={setUser} />}
+          />
         </Routes>
       </div>
     </div>
