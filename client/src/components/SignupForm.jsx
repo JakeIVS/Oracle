@@ -14,7 +14,7 @@ function SignupForm() {
           lastName: Yup.string().required('Required'),
           email: Yup.string()
             .email('Invalid email address.')
-            .required('required'),
+            .required('Required'),
           password: Yup.string()
             .min(6, 'Password must be 6-20 characters long')
             .max(20, 'Password must be 6-20 characters long')
@@ -34,16 +34,36 @@ function SignupForm() {
           </h1>
           <label htmlFor="firstName">First Name</label>
           <Field name="firstName" type="text" />
-          <ErrorMessage name="firstName" />
+          <ErrorMessage
+            name="firstName"
+            render={msg => (
+              <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
+            )}
+          />
           <label htmlFor="lastName">Last Name</label>
           <Field name="lastName" type="text" />
-          <ErrorMessage name="lastName" />
+          <ErrorMessage
+            name="lastName"
+            render={msg => (
+              <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
+            )}
+          />
           <label htmlFor="email">Email</label>
           <Field name="email" type="email" />
-          <ErrorMessage name="email" />
+          <ErrorMessage
+            name="email"
+            render={msg => (
+              <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
+            )}
+          />
           <label htmlFor="password">Password</label>
           <Field name="password" type="password" />
-          <ErrorMessage name="password" />
+          <ErrorMessage
+            name="password"
+            render={msg => (
+              <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
+            )}
+          />
         </Form>
       </Formik>
     </div>
