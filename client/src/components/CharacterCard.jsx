@@ -35,8 +35,8 @@ function CharacterCard() {
   );
 
   return (
-    <div className="group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-red-300">
-      <div className="absolute row-span-2 h-20 w-20 translate-x-[-20%] translate-y-[-30%] overflow-hidden rounded-full bg-gray-500">
+    <div className="group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-gradient-to-t from-n-dark to-n-light outline outline-primary">
+      <div className="absolute row-span-2 h-20 w-20 translate-x-[-20%] translate-y-[-30%] overflow-hidden rounded-full bg-gray-500 outline outline-secondary">
         <img
           src="src/assets/placeholder-portrait.jpg"
           alt="default-portrait"
@@ -44,7 +44,7 @@ function CharacterCard() {
         />
       </div>
       <h2 className="col-span-4 col-start-1 ml-20 font-bold">Name</h2>
-      <div className="row-span-2 ml-6 mr-3 flex self-center overflow-hidden">
+      <div className="row-span-2 ml-[15%] mr-[10%] flex self-center overflow-hidden">
         <div className="h-full w-full">{groupIcon}</div>
       </div>
       <h3 className="col-span-4 col-start-1 ml-20">Level and Class</h3>
