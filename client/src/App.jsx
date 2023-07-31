@@ -7,6 +7,7 @@ import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import ErrorScreen from './components/ErrorScreen';
 import UserDash from './components/UserDash';
+import CharacterList from './components/CharacterList';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,6 +26,7 @@ function App() {
             path="/signup"
             element={<SignupForm user={user} setUser={setUser} />}
           />
+          <Route path="/characters" element={<CharacterList user={user} />} />
         </Routes>
       </div>
     </div>
