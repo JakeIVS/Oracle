@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CharacterCard() {
+function CharacterCard({ name, level, characterclass, campaign }) {
   const groupIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -35,8 +35,8 @@ function CharacterCard() {
   );
 
   return (
-    <div className="group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-gradient-to-t from-n-dark to-n-light outline outline-primary">
-      <div className="absolute row-span-2 h-20 w-20 translate-x-[-20%] translate-y-[-30%] overflow-hidden rounded-full bg-gray-500 outline outline-secondary">
+    <div className="group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-gradient-to-t from-n-dark to-n-light outline outline-secondary">
+      <div className="absolute row-span-2 h-20 w-20 translate-x-[-20%] translate-y-[-30%] overflow-hidden rounded-full bg-gray-500 outline outline-primary">
         <img
           src="src/assets/placeholder-portrait.jpg"
           alt="default-portrait"
