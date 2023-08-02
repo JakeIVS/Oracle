@@ -122,6 +122,7 @@ class Characters(Resource):
             character = Character(
                 owner_id = user_id,
                 name = data['name'],
+                image_url = data['image_url'],
                 race = data['race'],
                 gender = data['gender'],
                 character_class = data['character_class'],

@@ -55,6 +55,7 @@ class Character(db.Model, SerializerMixin):
     campaign_id = db.Column(db.Integer, db.ForeignKey('campaigns.id'))
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String)
+    image_url = db.Column(db.String)
     race = db.Column(db.String)
     gender = db.Column(db.String)
     character_class = db.Column(db.String)
