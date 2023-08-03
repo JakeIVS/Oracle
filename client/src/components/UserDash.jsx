@@ -1,8 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function UserDash(user) {
+function UserDash({ id, firstName, lastName }) {
   const navigate = useNavigate();
+
+  console.log(id);
+  console.log(firstName);
 
   function characterList() {
     navigate('/characters', { replace: false });
@@ -16,7 +19,7 @@ function UserDash(user) {
     <div className="flex h-full w-full place-content-center bg-slate-300 p-20">
       <div className="grid aspect-square h-full grid-cols-4 gap-2 bg-slate-600 p-2 px-3 text-lg text-white">
         <h2 className="col-span-4 self-center text-center font-serif text-xl text-white">
-          Welcome, {user.firstName}
+          Welcome, {firstName}
         </h2>
         <div
           className="group col-span-3 flex flex-col-reverse overflow-x-hidden overflow-y-hidden outline outline-2"
@@ -32,10 +35,10 @@ function UserDash(user) {
           </h3>
         </div>
         <div
-          className="transition-color flex flex-col-reverse justify-evenly overflow-y-hidden bg-primary text-center text-sm outline outline-2 duration-200 hover:text-base"
+          className="transition-color flex flex-col-reverse justify-evenly overflow-y-hidden bg-primary text-center outline outline-2 duration-200 hover:text-xl"
           onClick={newCharacter}
         >
-          <h3 className="px-3 text-center">Create a Character</h3>
+          <h3 className="px-5 text-center">Create a Character</h3>
         </div>
         <div className="group col-span-3 flex flex-col-reverse overflow-x-hidden overflow-y-hidden outline outline-2">
           <img
@@ -47,7 +50,7 @@ function UserDash(user) {
             My Campaigns
           </h3>
         </div>
-        <div className="transition-color flex flex-col-reverse justify-evenly overflow-y-hidden bg-primary px-3 text-center text-sm outline outline-2 duration-200 hover:text-base">
+        <div className="flex flex-col-reverse justify-evenly overflow-y-hidden bg-primary px-5 text-center outline outline-2 transition-all duration-200 hover:text-xl">
           Start a Campaign
         </div>
         <div className="col-span-4 flex h-16 flex-col-reverse justify-center self-center text-center outline outline-2">

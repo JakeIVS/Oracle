@@ -257,7 +257,7 @@ function NewCharacter(user) {
               'Score must be between 1 and 20',
             ),
         })}
-        onSubmit={values => console.log(values)}
+        onSubmit={values => console.log(values, user.id)}
       >
         <Form className=" grid-col-5 grid aspect-video gap-5">
           <h1 className="col-span-5 col-start-1 text-center font-serif text-2xl font-bold text-white">
