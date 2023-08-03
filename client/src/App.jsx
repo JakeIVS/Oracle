@@ -14,6 +14,7 @@ import SideBar from './components/SideBar';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [sideBar, setSideBar] = useState(false);
 
   useEffect(() => {
     fetch('/api/check_session')
@@ -29,8 +30,13 @@ function App() {
   console.log(user?.id);
   return (
     <div>
-      <Header user={user} setUser={setUser} />
-      <SideBar user={user} />
+      <Header
+        user={user}
+        setUser={setUser}
+        sideBar={sideBar}
+        setSideBar={setSideBar}
+      />
+      <SideBar user={user} sideBar={sideBar} />
       <div className="h-screen pt-16">
         <Routes>
           <Route
