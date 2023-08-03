@@ -45,7 +45,7 @@ class Login(Resource):
         user = User.query.filter(User.email == data['email']).first()
         if user:
             if user.authenticate(data['password']):
-                session['user_id'] = user.user_id
+                session['user_id'] = user.id
                 return user.to_dict(), 201
             else:
                 return {"error": "Invalid Password"}, 401
