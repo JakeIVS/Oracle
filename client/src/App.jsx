@@ -24,14 +24,26 @@ function App() {
       .then(data => setUser(data));
   }, []);
 
+  console.log(user);
+  console.log(user?.id);
   return (
     <div>
-      <Header user={user} />
+      <Header user={user} setUser={setUser} />
       <div className="h-screen pt-16">
         <Routes>
           <Route
             path="/"
-            element={!!user ? <UserDash user={user} /> : <HomeScreen />}
+            element={
+              !!user ? (
+                <UserDash
+                  id={user.id}
+                  firstName={user.first_name}
+                  lastName={user.last_name}
+                />
+              ) : (
+                <HomeScreen />
+              )
+            }
           />
           <Route
             path="/login"
