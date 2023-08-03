@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './index.css';
 import CharacterSheet from './components/CharacterSheet';
@@ -12,6 +12,17 @@ import NewCharacter from './components/NewCharacter';
 
 function App() {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/check_session')
+      .then(r => {
+        if (r.ok) {
+          return r.json();
+        }
+      })
+      .then(data => setUser(data));
+  }, []);
+  console.log(user);
 
   return (
     <div>
@@ -29,6 +40,7 @@ function App() {
           />
           <Route path="/new_character" element={<NewCharacter user={user} />} />
           <Route path="/characters" element={<CharacterList user={user} />} />
+          <Route path="/character_sheet" element={<CharacterSheet />} />
         </Routes>
       </div>
     </div>
