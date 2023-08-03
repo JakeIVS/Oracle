@@ -9,7 +9,7 @@ function CharacterList({ user }) {
       </h1>
       <div className=" mx-[15%] grid grid-cols-1 gap-x-8 gap-y-3 pt-10 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         <CharacterCard
-          name="Test Character"
+          name="Generic Testcharacter"
           level={3}
           characterClass="Monk"
           campaign={1}
