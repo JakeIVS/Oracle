@@ -4,9 +4,6 @@ import { useNavigate } from 'react-router-dom';
 function UserDash({ id, firstName, lastName }) {
   const navigate = useNavigate();
 
-  console.log(id);
-  console.log(firstName);
-
   function characterList() {
     navigate('/characters', { replace: false });
   }
