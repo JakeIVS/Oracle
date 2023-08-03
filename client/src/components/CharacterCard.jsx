@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CharacterCard({ name, level, characterclass, campaign }) {
+function CharacterCard({ name, level, characterClass, campaign, image, race }) {
   const groupIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ function CharacterCard({ name, level, characterclass, campaign }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="h-full w-full stroke-slate-500 p-3"
+      className="h-full w-full stroke-slate-500 p-1"
     >
       <path
         strokeLinecap="round"
@@ -38,16 +38,18 @@ function CharacterCard({ name, level, characterclass, campaign }) {
     <div className="q group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-gradient-to-t from-n-dark to-n-light shadow-lg shadow-black outline outline-secondary transition-all duration-200 hover:scale-105                                                 hover:shadow-xl hover:shadow-neutral-500">
       <div className="absolute row-span-2 h-20 w-20 translate-x-[-20%] translate-y-[-30%] overflow-hidden rounded-full bg-gray-500 outline outline-primary">
         <img
-          src="src/assets/placeholder-portrait.jpg"
+          src={!!image ? image : 'src/assets/placeholder-portrait.jpg'}
           alt="default-portrait"
           className=""
         />
       </div>
-      <h2 className="col-span-4 col-start-1 ml-20 font-bold">Name</h2>
+      <h2 className="col-span-4 col-start-1 ml-20 font-bold">{name}</h2>
       <div className="row-span-2 ml-[15%] mr-[10%] flex self-center overflow-hidden">
-        <div className="h-full w-full">{groupIcon}</div>
+        <div className="h-full w-full">{!!campaign ? groupIcon : soloIcon}</div>
       </div>
-      <h3 className="col-span-4 col-start-1 ml-20">Level and Class</h3>
+      <h3 className="col-span-4 col-start-1 ml-20">
+        Level {level} {characterClass} | {race}
+      </h3>
     </div>
   );
 }
