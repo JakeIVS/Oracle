@@ -1,14 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 
-function Header(user, setUser) {
+function Header({ user, setUser, sideBar, setSideBar }) {
   const navigate = useNavigate();
+  const sideBarShown =
+    'absolute left-0 top-0 flex h-16 w-2/3 justify-center bg-primary px-3 transition-all';
+  const sideBarHidden =
+    'absolute left-0 top-0 flex h-16 w-screen justify-center bg-primary px-3 transition-all';
+
   function logout() {
     setUser(null);
     navigate('/', { replace: false });
   }
 
   return (
-    <div className="absolute left-0 top-0 flex h-16 w-screen justify-center bg-primary px-3">
+    <div className={!sideBar ? sideBarHidden : sideBarShown}>
       <a
         href="/"
         className="absolute left-2 top-3 font-serif text-4xl font-bold text-white"
@@ -30,6 +35,7 @@ function Header(user, setUser) {
         strokeWidth={1.5}
         stroke="currentColor"
         className="absolute right-2 top-3 h-10 w-10 stroke-white stroke-1 transition-all duration-300 hover:stroke-2"
+        onClick={() => setSideBar(!sideBar)}
       >
         <path
           strokeLinecap="round"
