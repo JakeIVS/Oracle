@@ -1,4 +1,12 @@
-function Header(user) {
+import { useNavigate } from 'react-router-dom';
+
+function Header(user, setUser) {
+  const navigate = useNavigate();
+  function logout() {
+    setUser(null);
+    navigate('/', { replace: false });
+  }
+
   return (
     <div className="absolute left-0 top-0 flex h-16 w-screen justify-center bg-primary px-3">
       <a
@@ -8,7 +16,12 @@ function Header(user) {
         Oracle
       </a>
       <nav className="flex  flex-col font-serif text-white">
-        <div className="h-full w-full bg-secondary px-3 pt-5">Nav</div>
+        <div
+          className="h-full w-full bg-secondary px-3 pt-5"
+          onClick={() => logout()}
+        >
+          Logout
+        </div>
       </nav>
       <svg
         xmlns="http://www.w3.org/2000/svg"
