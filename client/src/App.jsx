@@ -63,7 +63,7 @@ function App() {
           />
           <Route
             path="/new_character"
-            element={<NewCharacter id={user.id} />}
+            element={<NewCharacter id={user?.id} />}
           />
           <Route path="/characters" element={<CharacterList user={user} />} />
           <Route path="/character_sheet" element={<CharacterSheet />} />
