@@ -7,10 +7,12 @@ import {
   yupToFormErrors,
 } from 'formik';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
-function NewCharacter(user) {
+function NewCharacter({ id }) {
   const fieldFormat = 'rounded bg-gradient-to-t from-slate-400 to-white';
+  const navigate = useNavigate();
 
   const MySelect = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -257,7 +259,16 @@ function NewCharacter(user) {
               'Score must be between 1 and 20',
             ),
         })}
-        onSubmit={values => console.log(values, user.id)}
+        onSubmit={values => {
+          fetch('/api/characters', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
+          navigate('/characters', { replace: false });
+        }}
       >
         <Form className=" grid-col-5 grid aspect-video gap-5">
           <h1 className="col-span-5 col-start-1 text-center font-serif text-2xl font-bold text-white">
