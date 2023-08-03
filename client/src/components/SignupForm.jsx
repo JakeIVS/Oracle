@@ -1,7 +1,10 @@
 import { Formik, Field, Form, ErrorMessage, useField, useFormik } from 'formik';
+import { useState } from 'react';
 import * as Yup from 'yup';
 
 function SignupForm({ user, setUser }) {
+  const [isError, setIsError] = useState(false);
+  const [passShow, setPassShow] = useState(false);
   const field = 'rounded bg-gradient-to-t from-slate-400 to-white';
   const errorField =
     'rounded bg-gradient-to-t from-red-300 to-red-200 outline-double outline-red-600';
@@ -23,6 +26,25 @@ function SignupForm({ user, setUser }) {
         })}
         onSubmit={values => {
           console.log(values);
+          // fetch('/api/signup', {
+          //   method: 'POST',
+          //   headers: {
+          //     'Content-type': 'application/json',
+          //   },
+          //   body: JSON.stringify(values),
+          // })
+          //   .then(r => {
+          //     if (r.ok) {
+          //       setIsError(false);
+          //       return r.json();
+          //     }
+          //     throw new Error('Account name already taken');
+          //   })
+          //   .then(data => {
+          //     setUser(data);
+          //     console.log(data);
+          //     navigate('/', { replace: false });
+          //   });
         }}
       >
         <div className=" h-fit bg-slate-700 bg-opacity-70 p-5">
@@ -32,17 +54,17 @@ function SignupForm({ user, setUser }) {
               Sign Up
             </h1>
             <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" type="text" className={field} />
+            <Field name="first_name" type="text" className={field} />
             <ErrorMessage
-              name="firstName"
+              name="first_name"
               render={msg => (
                 <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
               )}
             />
             <label htmlFor="lastName">Last Name</label>
-            <Field name="lastName" type="text" className={field} />
+            <Field name="last_name" type="text" className={field} />
             <ErrorMessage
-              name="lastName"
+              name="last_name"
               render={msg => (
                 <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
               )}
@@ -56,13 +78,23 @@ function SignupForm({ user, setUser }) {
               )}
             />
             <label htmlFor="password">Password</label>
-            <Field name="password" type="password" className={field} />
+            <Field
+              name="password"
+              type={passShow ? 'text' : 'password'}
+              className={field}
+            />
             <ErrorMessage
               name="password"
               render={msg => (
                 <div className="pb-2 text-xs text-red-600">{msg}</div>
               )}
             />
+            <p
+              className="cursor-pointer text-xs text-white hover:underline"
+              onClick={() => setPassShow(!passShow)}
+            >
+              Show
+            </p>
             <div className="flex flex-row justify-between">
               <button
                 type="submit"

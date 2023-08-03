@@ -1,7 +1,12 @@
+import { data } from 'autoprefixer';
 import { Formik, Field, Form, ErrorMessage, useField, useFormik } from 'formik';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 function LoginForm({ user, setUser }) {
+  const navigate = useNavigate();
+  const [passShow, setPassShow] = useState(false);
   const field = 'rounded bg-gradient-to-t from-slate-400 to-white';
   const errorField =
     'rounded bg-gradient-to-t from-red-300 to-red-200 outline-double outline-red-600';
@@ -20,7 +25,23 @@ function LoginForm({ user, setUser }) {
             .required('Required'),
         })}
         onSubmit={values => {
-          console.log(values);
+          fetch('/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+            .then(r => {
+              if (r.ok) {
+                return r.json;
+              }
+              throw new Error('Something went wrong');
+            })
+            .then(data => {
+              setUser(data);
+              navigate('/', { replace: false });
+            });
         }}
       >
         <div className=" h-fit bg-slate-700 bg-opacity-70 p-5">
@@ -37,13 +58,24 @@ function LoginForm({ user, setUser }) {
               )}
             />
             <label htmlFor="password">Password</label>
-            <Field name="password" type="password" className={field} />
+            <Field
+              name="password"
+              type={passShow ? 'text' : 'password'}
+              className={field}
+            />
             <ErrorMessage
               name="password"
               render={msg => (
                 <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
               )}
             />
+            <p
+              className="cursor-pointer text-xs text-white hover:underline"
+              onClick={() => setPassShow(!passShow)}
+            >
+              Show
+            </p>
+
             <div className="flex flex-row justify-between">
               <button
                 type="submit"
