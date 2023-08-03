@@ -10,6 +10,7 @@ import UserDash from './components/UserDash';
 import CharacterList from './components/CharacterList';
 import NewCharacter from './components/NewCharacter';
 import HomeScreen from './components/HomeScreen';
+import SideBar from './components/SideBar';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -29,6 +30,7 @@ function App() {
   return (
     <div>
       <Header user={user} setUser={setUser} />
+      <SideBar user={user} />
       <div className="h-screen pt-16">
         <Routes>
           <Route
