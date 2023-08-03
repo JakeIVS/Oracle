@@ -22,11 +22,10 @@ function App() {
       })
       .then(data => setUser(data));
   }, []);
-  console.log(user);
 
   return (
     <div>
-      <Header />
+      <Header user={user} />
       <div className="h-screen pt-16">
         <Routes>
           <Route path="/" element={<UserDash user={user} />} />
