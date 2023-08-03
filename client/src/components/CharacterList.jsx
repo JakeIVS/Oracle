@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import CharacterCard from './CharacterCard';
 
 function CharacterList(user) {
+  console.log(user.characters);
   return (
     <div className="h-full w-full">
       <h1 className="pt-6 text-center font-serif text-3xl font-bold">
