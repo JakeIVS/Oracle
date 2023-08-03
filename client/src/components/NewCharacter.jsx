@@ -19,14 +19,14 @@ function NewCharacter(user) {
         <label htmlFor={props.id || props.name}>{label}</label>
         <select {...field} {...props} className={fieldFormat} />
         {meta.touched && meta.error ? (
-          <div className="error">{meta.error}</div>
+          <div className="pb-2 pt-0 text-xs text-red-600">{meta.error}</div>
         ) : null}
       </div>
     );
   };
 
   return (
-    <div className="h-full w-full bg-neutral-800 p-16">
+    <div className="h-full w-full bg-neutral-800 px-16">
       <Formik
         initialValues={{
           name: '',
@@ -257,8 +257,9 @@ function NewCharacter(user) {
               'Score must be between 1 and 20',
             ),
         })}
+        onSubmit={values => console.log(values)}
       >
-        <Form className=" grid-col-5 grid gap-5">
+        <Form className=" grid-col-5 grid aspect-video gap-5">
           <h1 className="col-span-5 col-start-1 text-center font-serif text-2xl font-bold text-white">
             New Character
           </h1>
