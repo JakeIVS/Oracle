@@ -61,7 +61,10 @@ function App() {
             path="/signup"
             element={<SignupForm user={user} setUser={setUser} />}
           />
-          <Route path="/new_character" element={<NewCharacter user={user} />} />
+          <Route
+            path="/new_character"
+            element={<NewCharacter id={user.id} />}
+          />
           <Route path="/characters" element={<CharacterList user={user} />} />
           <Route path="/character_sheet" element={<CharacterSheet />} />
         </Routes>
