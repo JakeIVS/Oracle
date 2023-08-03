@@ -9,6 +9,7 @@ import ErrorScreen from './components/ErrorScreen';
 import UserDash from './components/UserDash';
 import CharacterList from './components/CharacterList';
 import NewCharacter from './components/NewCharacter';
+import HomeScreen from './components/HomeScreen';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,7 +29,10 @@ function App() {
       <Header user={user} />
       <div className="h-screen pt-16">
         <Routes>
-          <Route path="/" element={<UserDash user={user} />} />
+          <Route
+            path="/"
+            element={!!user ? <UserDash user={user} /> : <HomeScreen />}
+          />
           <Route
             path="/login"
             element={<LoginForm user={user} setUser={setUser} />}
