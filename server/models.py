@@ -31,7 +31,6 @@ class User(db.Model, SerializerMixin):
     _password_hash = db.Column(db.String, nullable=False)
     theme = db.Column(db.String)
 
-    characters = db.relationship('Character', backref='owner')
     campaigns = db.relationship('Campaign', backref='dm')
 
     @hybrid_property
@@ -77,6 +76,7 @@ class Character(db.Model, SerializerMixin):
     tool_proficiencies = db.Column(db.String)
 
     spells = db.relationship('Spell', secondary=known_spell, backref='characters', cascade='all')
+    owner = db.relationship('User', backref='characters')
 
 class Campaign(db.Model, SerializerMixin):
     __tablename__ = 'campaigns'
