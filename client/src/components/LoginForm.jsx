@@ -25,24 +25,23 @@ function LoginForm({ user, setUser }) {
             .required('Required'),
         })}
         onSubmit={values => {
-          console.log(values);
-          // fetch('/api/login', {
-          //   method: 'POST',
-          //   headers: {
-          //     'Content-type': 'application/json',
-          //   },
-          //   body: JSON.stringify(values),
-          // })
-          //   .then(r => {
-          //     if (r.ok) {
-          //       return r.json;
-          //     }
-          //     throw new Error('Something went wrong');
-          //   })
-          //   .then(data => {
-          //     setUser(data);
-          //     navigate('/', { replace: false });
-          //   });
+          fetch('/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+            .then(r => {
+              if (r.ok) {
+                return r.json();
+              }
+              throw new Error('Something went wrong');
+            })
+            .then(data => {
+              setUser(data);
+              navigate('/', { replace: false });
+            });
         }}
       >
         <div className=" h-fit bg-slate-700 bg-opacity-70 p-5">
