@@ -15,25 +15,62 @@ function CharacterSheet() {
       });
   }, []);
 
+  function statBonus(stat) {
+    return Math.floor(stat / 2 - 5);
+  }
+
+  function profBonus(lvl) {
+    if (lvl < 5) {
+      return 2;
+    }
+    if (lvl < 9) {
+      return 3;
+    }
+    if (lvl < 13) {
+      return 4;
+    }
+    if (lvl < 17) {
+      return 5;
+    }
+    return 6;
+  }
+
   return (
     <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 bg-n-dark p-4">
-      <div className="col-span-3 bg-n-light">
-        <h4>N</h4>
+      <div className="sheet-field col-span-3">
+        <h3>{characterData?.name}</h3>
       </div>
-      <div className="bg-n-light">Speed</div>
-      <div className="bg-n-light">AC</div>
-      <div className="bg-n-light">Initiative</div>
-      <div className=" bg-n-light">Proficiency Bonus</div>
-      <div className="col-span-2 bg-n-light">HP</div>
-      <div className="col-start-1 row-span-4 bg-n-light">Ability Scores</div>
-      <div className="col-span-2 row-span-4 bg-n-light">Skills</div>
-      <div className="col-span-3 row-span-4 bg-n-light">Actions</div>
-      <div className="bg-n-light">Spell Attack</div>
-      <div className="bg-n-light">Spell Modifier</div>
-      <div className="bg-n-light">Spell Save DC</div>
-      <div className="col-span-3 row-span-3 bg-n-light">Spells/Abilities</div>
-      <div className="col-span-4 row-span-2 bg-n-light">Saving Throws</div>
-      <div className="col-span-5 row-span-2 bg-n-light">Feats and</div>
+      <div className="sheet-field">
+        <h4>Walk Speed</h4>
+        <p>{characterData?.speed}</p>
+      </div>
+      <div className="sheet-field">
+        <h4>AC</h4>
+        <p>{10 + statBonus(characterData?.dexterity_score)}</p>
+      </div>
+      <div className="sheet-field">
+        <h4>Initiative</h4>
+        <p>
+          {characterData.dexterity_score >= 0 ? '+' : '-'}
+          {statBonus(characterData?.dexterity_score)}
+        </p>
+      </div>
+      <div className=" sheet-field">
+        <h4>Proficiency Bonus</h4>
+        <p>+{profBonus(characterData.level)}</p>
+      </div>
+      <div className="sheet-field col-span-2">HP</div>
+      <div className="sheet-field col-start-1 row-span-4">Ability Scores</div>
+      <div className="sheet-field col-span-2 row-span-4">Skills</div>
+      <div className="sheet-field col-span-3 row-span-4">Actions</div>
+      <div className="sheet-field">Spell Attack</div>
+      <div className="sheet-field">Spell Modifier</div>
+      <div className="sheet-field">Spell Save DC</div>
+      <div className="sheet-field col-span-3 row-span-3">Spells/Abilities</div>
+      <div className="sheet-field col-span-4 row-span-2">Saving Throws</div>
+      <div className="sheet-field col-span-5 row-span-2">
+        Feats and Racial Traits
+      </div>
     </div>
   );
 }

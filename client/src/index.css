@@ -12,4 +12,7 @@
   .button {
     @apply from-secondary to-transparent p-1 text-base font-semibold text-white outline transition-all hover:bg-gradient-to-t;
   }
+  .sheet-field {
+    @apply bg-n-light p-2;
+  }
 }
