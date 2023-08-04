@@ -9,6 +9,14 @@ function SideBar({ sideBar }) {
     <div className={!sideBar ? hidden : shown}>
       <div className={!sideBar ? 'hidden' : null}>
         <h1 className={'bg-black text-center'}>Sidebar</h1>
+        <nav>
+          <div
+            className="bg-black text-center hover:bg-neutral-700"
+            onClick={() => logout()}
+          >
+            Logout
+          </div>
+        </nav>
       </div>
     </div>
   );

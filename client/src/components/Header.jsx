@@ -20,14 +20,7 @@ function Header({ user, setUser, sideBar, setSideBar }) {
       >
         Oracle
       </a>
-      <nav className="flex  flex-col font-serif text-white">
-        <div
-          className="h-full w-full bg-secondary px-3 pt-5"
-          onClick={() => logout()}
-        >
-          Logout
-        </div>
-      </nav>
+
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
