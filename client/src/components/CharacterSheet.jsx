@@ -15,6 +15,10 @@ function CharacterSheet() {
       });
   }, []);
 
+  const characterClass =
+    characterData?.character_class.slice(0, 1).toUpperCase() +
+    characterData?.character_class.slice(1);
+
   function statBonus(stat) {
     return Math.floor(stat / 2 - 5);
   }
@@ -39,7 +43,12 @@ function CharacterSheet() {
     <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 bg-gradient-to-t from-secondary to-primary p-4">
       <div className="sheet-field col-span-3">
         <h3>{characterData?.name}</h3>
-        <h4> Level {characterData?.level} | </h4>
+        <h4>
+          {characterData?.race} | {characterData?.gender}
+        </h4>
+        <h4>
+          Level {characterData?.level} | {characterClass}
+        </h4>
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
