@@ -17,14 +17,18 @@ function CharacterList({ user }) {
           race="Human"
         />
         {user.characters.map(char => {
-          <CharacterCard
-            name={char.name}
-            level={char.level}
-            characterClass={char.character_class}
-            campaign={char.campaign_id}
-            image={char.image_url}
-            race={char.race}
-          />;
+          return (
+            <CharacterCard
+              name={char.name}
+              id={char.id}
+              key={char.id}
+              level={char.level}
+              characterClass={char.character_class}
+              campaign={char.campaign_id}
+              image={char.image_url}
+              race={char.race}
+            />
+          );
         })}
       </div>
     </div>
