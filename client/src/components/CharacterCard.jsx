@@ -1,6 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function CharacterCard({ name, level, characterClass, campaign, image, race }) {
+function CharacterCard({
+  name,
+  level,
+  characterClass,
+  campaign,
+  image,
+  race,
+  id,
+}) {
+  const navigate = useNavigate();
   const groupIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +47,10 @@ function CharacterCard({ name, level, characterClass, campaign, image, race }) {
     characterClass.slice(0, 1).toUpperCase() + characterClass.slice(1);
 
   return (
-    <div className="q group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-gradient-to-t from-n-dark to-n-light shadow-lg shadow-black outline outline-secondary transition-all duration-200 hover:scale-105                                                 hover:shadow-xl hover:shadow-neutral-500">
+    <div
+      className="q group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-gradient-to-t from-n-dark to-n-light shadow-lg shadow-black outline outline-secondary transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-neutral-500"
+      onClick={() => navigate(`/characters/${id}`, { replace: false })}
+    >
       <div className="absolute row-span-2 h-20 w-20 translate-x-[-20%] translate-y-[-30%] overflow-hidden rounded-full bg-gray-500 outline outline-primary">
         <img
           src={!!image ? image : 'src/assets/placeholder-portrait.jpg'}
@@ -50,7 +63,7 @@ function CharacterCard({ name, level, characterClass, campaign, image, race }) {
         <div className="h-full w-full">{!!campaign ? groupIcon : soloIcon}</div>
       </div>
       <h3 className="col-span-4 col-start-1 ml-20">
-        Level {level} {race} {className}
+        Level {level} {className} | {race}
       </h3>
     </div>
   );
