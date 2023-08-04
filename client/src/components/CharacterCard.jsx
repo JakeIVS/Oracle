@@ -33,6 +33,8 @@ function CharacterCard({ name, level, characterClass, campaign, image, race }) {
       />
     </svg>
   );
+  const className = //Class name in title case
+    characterClass.slice(0, 1).toUpperCase() + characterClass.slice(1);
 
   return (
     <div className="q group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-gradient-to-t from-n-dark to-n-light shadow-lg shadow-black outline outline-secondary transition-all duration-200 hover:scale-105                                                 hover:shadow-xl hover:shadow-neutral-500">
@@ -48,7 +50,7 @@ function CharacterCard({ name, level, characterClass, campaign, image, race }) {
         <div className="h-full w-full">{!!campaign ? groupIcon : soloIcon}</div>
       </div>
       <h3 className="col-span-4 col-start-1 ml-20">
-        Level {level} {characterClass} | {race}
+        Level {level} {race} {className}
       </h3>
     </div>
   );
