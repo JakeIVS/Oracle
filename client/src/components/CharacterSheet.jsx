@@ -13,11 +13,13 @@ function CharacterSheet() {
         console.log(data);
         setCharacterData(data);
       });
-  });
+  }, []);
 
   return (
     <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 bg-n-dark p-4">
-      <div className="col-span-3 bg-n-light">Name</div>
+      <div className="col-span-3 bg-n-light">
+        <h4>N</h4>
+      </div>
       <div className="bg-n-light">Speed</div>
       <div className="bg-n-light">AC</div>
       <div className="bg-n-light">Initiative</div>
