@@ -36,9 +36,10 @@ function CharacterSheet() {
   }
 
   return (
-    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 bg-n-dark p-4">
+    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 bg-gradient-to-t from-secondary to-primary p-4">
       <div className="sheet-field col-span-3">
         <h3>{characterData?.name}</h3>
+        <h4> Level {characterData.level} | </h4>
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
