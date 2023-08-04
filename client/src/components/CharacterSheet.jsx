@@ -39,7 +39,7 @@ function CharacterSheet() {
     <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 bg-gradient-to-t from-secondary to-primary p-4">
       <div className="sheet-field col-span-3">
         <h3>{characterData?.name}</h3>
-        <h4> Level {characterData.level} | </h4>
+        <h4> Level {characterData?.level} | </h4>
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
@@ -52,13 +52,13 @@ function CharacterSheet() {
       <div className="sheet-field">
         <h4>Initiative</h4>
         <p>
-          {characterData.dexterity_score >= 0 ? '+' : '-'}
+          {characterData?.dexterity_score >= 0 ? '+' : '-'}
           {statBonus(characterData?.dexterity_score)}
         </p>
       </div>
       <div className=" sheet-field">
         <h4>Proficiency Bonus</h4>
-        <p>+{profBonus(characterData.level)}</p>
+        <p>+{profBonus(characterData?.level)}</p>
       </div>
       <div className="sheet-field col-span-2">HP</div>
       <div className="sheet-field col-start-1 row-span-4">Ability Scores</div>
