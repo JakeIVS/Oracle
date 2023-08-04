@@ -154,6 +154,13 @@ class CharactersId(Resource):
             except:
                 return make_response({'errors':['Validation errors']}, 402)
         return make_response({"error":"Character not found"}, 404)        
+    def get(self,id):
+        user_id = session['user_id']
+        character = Character.query.filter(Character.id == id).first()
+        if character.owner_id == user_id:
+            return make_response(character.to_dict(), 200)
+        else:
+            return make_response({'error': 'character id does not exist or is not owned by this user'}, 401)
 
 
 api.add_resource(Signup, '/signup')
