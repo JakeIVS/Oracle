@@ -66,7 +66,7 @@ function App() {
             element={<NewCharacter id={user?.id} />}
           />
           <Route path="/characters" element={<CharacterList user={user} />} />
-          <Route path="/character_sheet" element={<CharacterSheet />} />
+          <Route path="/characters/:id" element={<CharacterSheet />} />
         </Routes>
       </div>
     </div>
