@@ -35,8 +35,11 @@ function NewCampaign({ id }) {
           join_code: '',
         }}
         validationSchema={Yup.object({
-          name: Yup.string.required('Required'),
-          join_code: Yup.string(''),
+          name: Yup.string().required('Required'),
+          join_code: Yup.string()
+            .matches(/^[0-9]+$/, 'Must be only digits')
+            .min(5, 'Must be 5 digits')
+            .max(5, 'Must be 5 digits'),
         })}
         onSubmit={values => {
           fetch('/api/campaigns', {
@@ -46,14 +49,14 @@ function NewCampaign({ id }) {
             },
             body: JSON.stringify(values),
           });
-          navigate('/characters', { replace: false });
+          navigate('/campaigns', { replace: false });
         }}
       >
         <Form className=" grid-col-5 grid aspect-video gap-5">
           <h1 className="col-span-5 col-start-1 text-center font-serif text-2xl font-bold text-white">
             New Campaign
           </h1>
-          <div className="col-span-4 col-start-1 flex flex-col">
+          <div className="col-span-3 col-start-1 flex flex-col">
             <label htmlFor="name" className="row-start-2">
               Name
             </label>
@@ -65,9 +68,9 @@ function NewCampaign({ id }) {
               )}
             />
           </div>
-          <div className="col-start-5 flex flex-col">
+          <div className="col-start-4 flex flex-col">
             <label htmlFor="image_url" className="row-start-2">
-              Image URL
+              Join Code (optional)
             </label>
             <Field name="join_code" type="text" className={fieldFormat} />
             <ErrorMessage
@@ -79,7 +82,7 @@ function NewCampaign({ id }) {
           </div>
           <button
             type="submit"
-            className="col-start-5 row-start-7 mt-4 from-secondary to-transparent p-1 text-base font-semibold text-white outline transition-all hover:bg-gradient-to-t"
+            className="col-start-5 mt-4 h-12 from-secondary to-transparent p-1 text-base font-semibold text-white outline transition-all hover:bg-gradient-to-t"
           >
             Create
           </button>
