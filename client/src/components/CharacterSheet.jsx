@@ -23,6 +23,22 @@ function CharacterSheet() {
     return Math.floor(stat / 2 - 5);
   }
 
+  // function maxHP(charClass, level) {
+  //   if (charClass === 'wizard' || charClass === 'sorcerer') {
+  //     return level * 6;
+  //   } else if (charClass === 'barbarian') {
+  //     return level * 12;
+  //   } else if (
+  //     charClass === 'fighter' ||
+  //     charClass === 'paladin' ||
+  //     charClass === 'ranger'
+  //   ) {
+  //     return level * 10;
+  //   } else {
+  //     return level * 8;
+  //   }
+  // }
+
   function profBonus(lvl) {
     if (lvl < 5) {
       return 2;
@@ -72,7 +88,7 @@ function CharacterSheet() {
       <div className="sheet-field col-span-2">
         <h4>Health</h4>
         <p>
-          {characterData?.current_hp}/{characterData?.hit_point_max}
+          {characterData?.current_hp} /{characterData?.hit_point_max}
         </p>
       </div>
       <div className="sheet-field col-start-1 row-span-4">Ability Scores</div>
