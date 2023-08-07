@@ -95,13 +95,13 @@ function CharacterSheet() {
   return (
     <div className="aspect-csheet no-scrollbar grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4">
       <div className="sheet-field col-span-3">
-        <h3>{characterData?.name}</h3>
-        <h4>
+        <h3 className="font-serif font-bold">{characterData?.name}</h3>
+        <p>
           {characterData?.race} | {characterData?.gender}
-        </h4>
-        <h4>
+        </p>
+        <p>
           Level {characterData?.level} | {characterClass}
-        </h4>
+        </p>
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
@@ -109,13 +109,13 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field">
         <h4>AC</h4>
-        <p>{10 + statBonus(characterData?.dexterity_score)}</p>
+        <p>{10 + statBonus(dexterity)}</p>
       </div>
       <div className="sheet-field">
         <h4>Initiative</h4>
         <p>
-          {characterData?.dexterity_score >= 0 ? '+' : '-'}
-          {statBonus(characterData?.dexterity_score)}
+          {dexterity >= 0 ? '+' : '-'}
+          {statBonus(dexterity)}
         </p>
       </div>
       <div className=" sheet-field">
@@ -129,18 +129,32 @@ function CharacterSheet() {
         </p>
       </div>
       <div className="sheet-field col-start-1 row-span-4 flex flex-col justify-around">
-        <AbilityScore />
-        <AbilityScore />
-        <AbilityScore />
-        <AbilityScore />
-        <AbilityScore />
-        <AbilityScore />
+        <AbilityScore stat="STR" score={strength} bonus={statBonus(strength)} />
+        <AbilityScore
+          stat="DEX"
+          score={dexterity}
+          bonus={statBonus(dexterity)}
+        />
+        <AbilityScore
+          stat="CON"
+          score={constitution}
+          bonus={statBonus(constitution)}
+        />
+        <AbilityScore
+          stat="INT"
+          score={intelligence}
+          bonus={statBonus(intelligence)}
+        />
+        <AbilityScore stat="WIS" score={wisdom} bonus={statBonus(wisdom)} />
+        <AbilityScore stat="CHA" score={charisma} bonus={statBonus(charisma)} />
       </div>
       <div className="sheet-field col-span-2 row-span-4 flex flex-col justify-between">
         <h4>Skills</h4>
         <ul className="h-full overflow-y-scroll outline">{skills_list}</ul>
       </div>
-      <div className="sheet-field col-span-3 row-span-4">Actions</div>
+      <div className="sheet-field col-span-3 row-span-4">
+        <h4>Actions</h4>
+      </div>
       <div className="sheet-field">Spell Attack</div>
       <div className="sheet-field">Spell Modifier</div>
       <div className="sheet-field">Spell Save DC</div>
