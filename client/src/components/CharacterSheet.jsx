@@ -1,6 +1,8 @@
 import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import AbilityScore from './AbilityScore';
+import SavingThrow from './SavingThrow';
 
 function CharacterSheet() {
   const { id } = useParams();
@@ -91,14 +93,29 @@ function CharacterSheet() {
           {characterData?.current_hp} /{characterData?.hit_point_max}
         </p>
       </div>
-      <div className="sheet-field col-start-1 row-span-4">Ability Scores</div>
+      <div className="sheet-field col-start-1 row-span-4 flex flex-col justify-between">
+        <AbilityScore />
+        <AbilityScore />
+        <AbilityScore />
+        <AbilityScore />
+        <AbilityScore />
+        <AbilityScore />
+      </div>
       <div className="sheet-field col-span-2 row-span-4">Skills</div>
       <div className="sheet-field col-span-3 row-span-4">Actions</div>
       <div className="sheet-field">Spell Attack</div>
       <div className="sheet-field">Spell Modifier</div>
       <div className="sheet-field">Spell Save DC</div>
       <div className="sheet-field col-span-3 row-span-3">Spells/Abilities</div>
-      <div className="sheet-field col-span-4 row-span-2">Saving Throws</div>
+      <div className="sheet-field col-span-4 row-span-2 grid grid-cols-2 gap-2">
+        <h4 className="col-span-2 text-center">Saving Throws</h4>
+        <SavingThrow />
+        <SavingThrow />
+        <SavingThrow />
+        <SavingThrow />
+        <SavingThrow />
+        <SavingThrow />
+      </div>
       <div className="sheet-field col-span-5 row-span-2">
         Feats and Racial Traits
       </div>
