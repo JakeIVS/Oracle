@@ -3,7 +3,7 @@ import CharacterCard from './CharacterCard';
 
 function CharacterList({ user }) {
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full bg-gradient-to-t from-n-light to-n-dark">
       <h1 className="pt-6 text-center font-serif text-3xl font-bold">
         Your Characters
       </h1>

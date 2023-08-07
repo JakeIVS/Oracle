@@ -13,7 +13,7 @@ function UserDash({ id, firstName, lastName }) {
   }
 
   return (
-    <div className="flex h-full w-full place-content-center bg-slate-300 p-20">
+    <div className="flex h-full w-full place-content-center bg-gradient-to-t from-n-light to-n-dark p-20">
       <div className="grid aspect-square h-full grid-cols-4 gap-3 bg-slate-600 p-6 text-lg text-white">
         <h2 className="col-span-4 self-center text-center font-serif text-2xl font-semibold text-white">
           Welcome, {firstName}
@@ -27,7 +27,7 @@ function UserDash({ id, firstName, lastName }) {
             alt="my characters"
             className="transition-all duration-300 group-hover:scale-110"
           />
-          <h3 className="absolute w-1/4 bg-gradient-to-r from-primary to-transparent text-2xl transition-all duration-300 group-hover:w-1/3 group-hover:text-2xl lg:w-1/6 lg:group-hover:w-1/4">
+          <h3 className="absolute w-1/4 bg-gradient-to-r from-secondary to-transparent text-2xl transition-all duration-300 group-hover:w-1/3 group-hover:text-2xl lg:w-1/6 lg:group-hover:w-1/4">
             My Characters
           </h3>
         </div>
@@ -43,7 +43,7 @@ function UserDash({ id, firstName, lastName }) {
             alt="my campaigns"
             className=" transition-all duration-300 group-hover:scale-110"
           />
-          <h3 className="absolute w-1/4 bg-gradient-to-r from-primary to-transparent text-2xl transition-all duration-300 group-hover:w-1/3 group-hover:text-2xl lg:w-1/6 lg:group-hover:w-1/4">
+          <h3 className="absolute w-1/4 bg-gradient-to-r from-secondary to-transparent text-2xl transition-all duration-300 group-hover:w-1/3 group-hover:text-2xl lg:w-1/6 lg:group-hover:w-1/4">
             My Campaigns
           </h3>
         </div>
