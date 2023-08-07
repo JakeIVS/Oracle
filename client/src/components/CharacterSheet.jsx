@@ -128,7 +128,7 @@ function CharacterSheet() {
           {characterData?.current_hp} /{characterData?.hit_point_max}
         </p>
       </div>
-      <div className="sheet-field col-start-1 row-span-4 flex flex-col justify-between">
+      <div className="sheet-field col-start-1 row-span-4 flex flex-col justify-around">
         <AbilityScore />
         <AbilityScore />
         <AbilityScore />

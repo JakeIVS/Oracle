@@ -2,7 +2,7 @@ import React from 'react';
 
 function AbilityScore() {
   return (
-    <div className="aspect-square h-1/6 overflow-hidden bg-slate-600 outline">
+    <div className="aspect-square overflow-hidden bg-slate-600 lg:aspect-[3/2] xl:aspect-[2/1]">
       <h4>STR</h4>
     </div>
   );
