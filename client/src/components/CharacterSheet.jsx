@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AbilityScore from './AbilityScore';
 import SavingThrow from './SavingThrow';
+import NumBox from './NumBox';
 
 function CharacterSheet() {
   const { id } = useParams();
@@ -105,28 +106,31 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
-        <p>{characterData?.speed}</p>
+        <NumBox value={characterData?.speed} />
       </div>
       <div className="sheet-field">
         <h4>AC</h4>
-        <p>{10 + statBonus(dexterity)}</p>
+        <NumBox value={10 + statBonus(dexterity)} />
       </div>
       <div className="sheet-field">
         <h4>Initiative</h4>
-        <p>
-          {dexterity >= 0 ? '+' : '-'}
-          {statBonus(dexterity)}
-        </p>
+        <NumBox
+          value={
+            dexterity >= 0
+              ? `+${statBonus(dexterity)}`
+              : `${statBonus(dexterity)}`
+          }
+        />
       </div>
       <div className=" sheet-field">
         <h4>Proficiency Bonus</h4>
-        <p>+{profBonus(characterData?.level)}</p>
+        <NumBox value={`+${profBonus(characterData?.level)}`} />
       </div>
       <div className="sheet-field col-span-2">
         <h4>Health</h4>
-        <p>
-          {characterData?.current_hp} /{characterData?.hit_point_max}
-        </p>
+        <NumBox
+          value={`${characterData?.current_hp} / ${characterData?.hit_point_max}`}
+        />
       </div>
       <div className="sheet-field col-start-1 row-span-4 flex flex-col justify-around">
         <AbilityScore stat="STR" score={strength} bonus={statBonus(strength)} />
@@ -150,7 +154,9 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-2 row-span-4 flex flex-col justify-between">
         <h4>Skills</h4>
-        <ul className="h-full overflow-y-scroll outline">{skills_list}</ul>
+        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1">
+          {skills_list}
+        </ul>
       </div>
       <div className="sheet-field col-span-3 row-span-4">
         <h4>Actions</h4>
