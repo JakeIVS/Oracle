@@ -11,6 +11,7 @@ import CharacterList from './components/CharacterList';
 import NewCharacter from './components/NewCharacter';
 import HomeScreen from './components/HomeScreen';
 import SideBar from './components/SideBar';
+import NewCampaign from './components/NewCampaign';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -62,11 +63,12 @@ function App() {
             element={<SignupForm user={user} setUser={setUser} />}
           />
           <Route
-            path="/new_character"
+            path="/characters/new"
             element={<NewCharacter id={user?.id} />}
           />
           <Route path="/characters" element={<CharacterList user={user} />} />
           <Route path="/characters/:id" element={<CharacterSheet />} />
+          <Route path="/campaigns/new" element={<NewCampaign />} />
         </Routes>
       </div>
     </div>

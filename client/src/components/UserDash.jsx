@@ -9,7 +9,11 @@ function UserDash({ id, firstName, lastName }) {
   }
 
   function newCharacter() {
-    navigate('/new_character', { replace: false });
+    navigate('/characters/new', { replace: false });
+  }
+
+  function newCampaign() {
+    navigate('/campaigns/new', { replace: false });
   }
 
   return (
@@ -47,7 +51,10 @@ function UserDash({ id, firstName, lastName }) {
             My Campaigns
           </h3>
         </div>
-        <div className="flex flex-col-reverse justify-evenly overflow-x-hidden overflow-y-hidden bg-primary px-5 text-center outline outline-1 outline-n-dark transition-all duration-200 hover:text-xl">
+        <div
+          className="flex flex-col-reverse justify-evenly overflow-x-hidden overflow-y-hidden bg-primary px-5 text-center outline outline-1 outline-n-dark transition-all duration-200 hover:text-xl"
+          onClick={() => newCampaign()}
+        >
           Start a Campaign
         </div>
         <div className="col-span-4 flex h-16 flex-col-reverse justify-center self-center text-center outline outline-1 outline-n-dark">
