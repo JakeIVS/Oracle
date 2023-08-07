@@ -10,6 +10,12 @@ function SideBar({ sideBar, user, setUser }) {
   function logout() {
     setUser(null);
     navigate('/', { replace: false });
+    fetch('/api/logout', {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
   }
 
   console.log(user);
