@@ -93,7 +93,7 @@ function CharacterSheet() {
   }
 
   return (
-    <div className="aspect-csheet no-scrollbar grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4">
+    <div className="aspect-csheet no-scrollbar grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
       <div className="sheet-field col-span-3">
         <h3 className="font-serif font-bold">{characterData?.name}</h3>
         <p>

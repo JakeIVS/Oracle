@@ -28,7 +28,7 @@ function NewCharacter({ id }) {
   };
 
   return (
-    <div className="h-full w-full bg-neutral-800 px-16">
+    <div className="flex h-full w-full justify-around bg-neutral-800 px-16">
       <Formik
         initialValues={{
           name: '',
@@ -270,7 +270,7 @@ function NewCharacter({ id }) {
           navigate('/characters', { replace: false });
         }}
       >
-        <Form className=" grid-col-5 grid aspect-video gap-5">
+        <Form className=" grid-col-5 grid aspect-video h-1/2 place-content-center gap-5">
           <h1 className="col-span-5 col-start-1 text-center font-serif text-2xl font-bold text-white">
             New Character
           </h1>
