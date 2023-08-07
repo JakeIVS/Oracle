@@ -155,12 +155,20 @@ function CharacterSheet() {
       <div className="sheet-field col-span-3 row-span-4">
         <h4>Actions</h4>
       </div>
-      <div className="sheet-field">Spell Attack</div>
-      <div className="sheet-field">Spell Modifier</div>
-      <div className="sheet-field">Spell Save DC</div>
-      <div className="sheet-field col-span-3 row-span-3">Spells/Abilities</div>
+      <div className="sheet-field">
+        <h4>Spell Attack</h4>
+      </div>
+      <div className="sheet-field">
+        <h4>Spell Modifier</h4>
+      </div>
+      <div className="sheet-field">
+        <h4>Spell Save DC</h4>
+      </div>
+      <div className="sheet-field col-span-3 row-span-3">
+        <h4>Spells/Abilities</h4>
+      </div>
       <div className="sheet-field col-span-4 row-span-2 grid grid-cols-2 gap-2">
-        <h4 className="col-span-2 text-center">Saving Throws</h4>
+        <h4 className="col-span-2">Saving Throws</h4>
         <SavingThrow />
         <SavingThrow />
         <SavingThrow />
@@ -169,7 +177,7 @@ function CharacterSheet() {
         <SavingThrow />
       </div>
       <div className="sheet-field col-span-5 row-span-2">
-        Feats and Racial Traits
+        <h4>Feats and Racial Traits</h4>
       </div>
     </div>
   );
