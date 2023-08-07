@@ -17,13 +17,48 @@ function CharacterSheet() {
       });
   }, []);
 
+  // set correctly-cased class
   const characterClass =
     characterData?.character_class.slice(0, 1).toUpperCase() +
     characterData?.character_class.slice(1);
 
+  // set ability score variables
+  const strength = characterData?.strength_score;
+  const dexterity = characterData?.dexterity_score;
+  const constitution = characterData?.constitution_score;
+  const intelligence = characterData?.intelligence_score;
+  const wisdom = characterData?.wisdom_score;
+  const charisma = characterData?.charisma_score;
+
   function statBonus(stat) {
     return Math.floor(stat / 2 - 5);
   }
+
+  const skillScores = {
+    Acrobatics: dexterity,
+    'Animal Handling': wisdom,
+    Arcana: intelligence,
+    Athletics: strength,
+    Deception: charisma,
+    History: intelligence,
+    Insight: wisdom,
+    Intimidation: charisma,
+    Investigation: intelligence,
+    Medicine: wisdom,
+    Nature: intelligence,
+    Perception: wisdom,
+    Performance: charisma,
+    Persuasion: charisma,
+    Religion: intelligence,
+    'Sleight of Hand': dexterity,
+    Stealth: dexterity,
+    Survival: wisdom,
+  };
+
+  const skills_array = Object.keys(skillScores);
+  const skills_list = skills_array.map(skill => {
+    return <li>{skill}</li>;
+  });
 
   // function maxHP(charClass, level) {
   //   if (charClass === 'wizard' || charClass === 'sorcerer') {
@@ -58,7 +93,7 @@ function CharacterSheet() {
   }
 
   return (
-    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 bg-gradient-to-t from-secondary to-primary p-4">
+    <div className="aspect-csheet no-scrollbar grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4">
       <div className="sheet-field col-span-3">
         <h3>{characterData?.name}</h3>
         <h4>
@@ -101,7 +136,10 @@ function CharacterSheet() {
         <AbilityScore />
         <AbilityScore />
       </div>
-      <div className="sheet-field col-span-2 row-span-4">Skills</div>
+      <div className="sheet-field col-span-2 row-span-4 flex flex-col justify-between">
+        <h4>Skills</h4>
+        <ul className="h-full overflow-y-scroll outline">{skills_list}</ul>
+      </div>
       <div className="sheet-field col-span-3 row-span-4">Actions</div>
       <div className="sheet-field">Spell Attack</div>
       <div className="sheet-field">Spell Modifier</div>
