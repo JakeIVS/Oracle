@@ -36,7 +36,7 @@ function App() {
         sideBar={sideBar}
         setSideBar={setSideBar}
       />
-      <SideBar user={user} sideBar={sideBar} />
+      <SideBar user={user} setUser={setUser} sideBar={sideBar} />
       <div className="h-screen pt-16">
         <Routes>
           <Route
