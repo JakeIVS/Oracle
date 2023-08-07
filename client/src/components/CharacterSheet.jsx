@@ -69,7 +69,12 @@ function CharacterSheet() {
         <h4>Proficiency Bonus</h4>
         <p>+{profBonus(characterData?.level)}</p>
       </div>
-      <div className="sheet-field col-span-2">HP</div>
+      <div className="sheet-field col-span-2">
+        <h4>Health</h4>
+        <p>
+          {characterData?.current_hp}/{characterData?.hit_point_max}
+        </p>
+      </div>
       <div className="sheet-field col-start-1 row-span-4">Ability Scores</div>
       <div className="sheet-field col-span-2 row-span-4">Skills</div>
       <div className="sheet-field col-span-3 row-span-4">Actions</div>
