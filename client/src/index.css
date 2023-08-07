@@ -16,7 +16,7 @@
     @apply from-secondary to-transparent p-1 text-base font-semibold text-white outline transition-all hover:bg-gradient-to-t;
   }
   .sheet-field {
-    @apply bg-gradient-to-t from-n-light to-n-dark p-2;
+    @apply flex flex-col justify-between bg-gradient-to-t from-n-light to-n-dark p-2 pb-4;
   }
 }
 
