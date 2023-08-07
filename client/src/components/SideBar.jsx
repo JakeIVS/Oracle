@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 function SideBar({ sideBar, user, setUser }) {
   const navigate = useNavigate();
   const shown =
-    'absolute right-0 top-0 flex h-full w-1/3 flex-col bg-neutral-800 text-white transition-all';
+    'absolute right-0 top-0 flex h-full w-1/3 lg:w-1/4 xl:w-1/5 flex-col bg-neutral-800 text-white transition-all';
   const hidden = 'absolute right-1 top-0 h-full w-0 transition-all';
 
   function logout() {

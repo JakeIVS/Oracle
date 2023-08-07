@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 function Header({ user, setUser, sideBar, setSideBar }) {
   const navigate = useNavigate();
   const sideBarShown =
-    'absolute left-0 top-0 flex h-16 w-2/3 justify-center bg-primary px-3 transition-all';
+    'absolute left-0 top-0 flex h-16 w-2/3 lg:w-3/4 xl:w-4/5 justify-center bg-primary px-3 transition-all';
   const sideBarHidden =
     'absolute left-0 top-0 flex h-16 w-screen justify-center bg-primary px-3 transition-all';
 
