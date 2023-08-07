@@ -52,13 +52,13 @@ function NewCampaign({ id }) {
           navigate('/campaigns', { replace: false });
         }}
       >
-        <Form className=" grid-col-5 grid aspect-video gap-5">
+        <Form className=" flex aspect-video flex-col gap-5">
           <h1 className="col-span-5 col-start-1 text-center font-serif text-2xl font-bold text-white">
             New Campaign
           </h1>
           <div className="col-span-3 col-start-1 flex flex-col">
             <label htmlFor="name" className="row-start-2">
-              Name
+              Campaign Name
             </label>
             <Field name="name" type="text" className={fieldFormat} />
             <ErrorMessage
@@ -68,7 +68,7 @@ function NewCampaign({ id }) {
               )}
             />
           </div>
-          <div className="col-start-4 flex flex-col">
+          <div className="col-start-4 flex w-1/4 flex-col">
             <label htmlFor="image_url" className="row-start-2">
               Join Code (optional)
             </label>
