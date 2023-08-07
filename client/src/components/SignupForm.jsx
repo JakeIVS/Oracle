@@ -1,8 +1,10 @@
 import { Formik, Field, Form, ErrorMessage, useField, useFormik } from 'formik';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 function SignupForm({ user, setUser }) {
+  const navigate = useNavigate();
   const [isError, setIsError] = useState(false);
   const [passShow, setPassShow] = useState(false);
   const field = 'rounded bg-gradient-to-t from-slate-400 to-white';
@@ -12,10 +14,16 @@ function SignupForm({ user, setUser }) {
   return (
     <div className="flex h-full w-full place-content-center bg-gradient-to-t from-primary to-secondary pt-14">
       <Formik
-        initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
+        // first_name and last_name variables are named using snake case opposed to camel case, in order to properly post to the database
+        initialValues={{
+          first_name: '',
+          last_name: '',
+          email: '',
+          password: '',
+        }}
         validationSchema={Yup.object({
-          firstName: Yup.string().required('Required'),
-          lastName: Yup.string().required('Required'),
+          first_name: Yup.string().required('Required'),
+          last_name: Yup.string().required('Required'),
           email: Yup.string()
             .email('Invalid email address.')
             .required('Required'),
@@ -26,25 +34,25 @@ function SignupForm({ user, setUser }) {
         })}
         onSubmit={values => {
           console.log(values);
-          // fetch('/api/signup', {
-          //   method: 'POST',
-          //   headers: {
-          //     'Content-type': 'application/json',
-          //   },
-          //   body: JSON.stringify(values),
-          // })
-          //   .then(r => {
-          //     if (r.ok) {
-          //       setIsError(false);
-          //       return r.json();
-          //     }
-          //     throw new Error('Account name already taken');
-          //   })
-          //   .then(data => {
-          //     setUser(data);
-          //     console.log(data);
-          //     navigate('/', { replace: false });
-          //   });
+          fetch('/api/signup', {
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+            .then(r => {
+              if (r.ok) {
+                setIsError(false);
+                return r.json();
+              }
+              throw new Error('Account name already taken');
+            })
+            .then(data => {
+              setUser(data);
+              console.log(data);
+              navigate('/', { replace: false });
+            });
         }}
       >
         <div className=" h-fit bg-slate-700 bg-opacity-70 p-5">
@@ -53,7 +61,7 @@ function SignupForm({ user, setUser }) {
               {' '}
               Sign Up
             </h1>
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="first_name">First Name</label>
             <Field name="first_name" type="text" className={field} />
             <ErrorMessage
               name="first_name"
@@ -61,7 +69,7 @@ function SignupForm({ user, setUser }) {
                 <div className="pb-2 pt-0 text-xs text-red-600">{msg}</div>
               )}
             />
-            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="last_name">Last Name</label>
             <Field name="last_name" type="text" className={field} />
             <ErrorMessage
               name="last_name"
