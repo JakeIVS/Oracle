@@ -82,7 +82,7 @@ function CharacterSheet() {
   const skills_array = Object.keys(skillScores);
   const skills_list = skills_array.map(skill => {
     return (
-      <li className="flex justify-between bg-gradient-to-t from-n-light to-n-dark px-1 py-2 outline outline-1 ">
+      <li className="flex justify-between border-t-2 border-black px-1 py-2">
         <p className="self-center">{skill}</p>
         <NumBox value={statBonusString(skillScores[skill])} />
       </li>
