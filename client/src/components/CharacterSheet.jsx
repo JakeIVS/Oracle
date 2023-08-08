@@ -232,6 +232,7 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-5 row-span-2">
         <h4>Feats and Racial Traits</h4>
+        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>
     </div>
   );
