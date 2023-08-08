@@ -12,6 +12,8 @@ import NewCharacter from './components/NewCharacter';
 import HomeScreen from './components/HomeScreen';
 import SideBar from './components/SideBar';
 import NewCampaign from './components/NewCampaign';
+import CampaignList from './components/CampaignList';
+import CampaignControlPanel from './components/CampaignControlPanel';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -64,11 +66,28 @@ function App() {
           />
           <Route
             path="/characters/new"
-            element={<NewCharacter id={user?.id} />}
+            element={!user ? <ErrorScreen /> : <NewCharacter id={user?.id} />}
           />
-          <Route path="/characters" element={<CharacterList user={user} />} />
-          <Route path="/characters/:id" element={<CharacterSheet />} />
-          <Route path="/campaigns/new" element={<NewCampaign />} />
+          <Route
+            path="/characters"
+            element={!user ? <ErrorScreen /> : <CharacterList user={user} />}
+          />
+          <Route
+            path="/characters/:id"
+            element={!user ? <ErrorScreen /> : <CharacterSheet />}
+          />
+          <Route
+            path="/campaigns/new"
+            element={!user ? <ErrorScreen /> : <NewCampaign />}
+          />
+          <Route
+            path="/campaigns"
+            element={!user ? <ErrorScreen /> : <CampaignList user={user} />}
+          />
+          <Route
+            path="/campaigns/:id"
+            element={!user ? <ErrorScreen /> : <CampaignControlPanel />}
+          />
         </Routes>
       </div>
     </div>
