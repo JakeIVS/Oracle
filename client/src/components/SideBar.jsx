@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function SideBar({ sideBar, user, setUser }) {
+function SideBar({ sideBar, user, setUser, setSideBar }) {
   const navigate = useNavigate();
   const shown =
     'absolute right-0 top-0 flex h-full w-1/3 lg:w-1/4 xl:w-1/5 flex-col bg-neutral-800 text-white transition-all';
@@ -16,6 +16,7 @@ function SideBar({ sideBar, user, setUser }) {
         'Content-type': 'application/json',
       },
     });
+    setSideBar(false);
   }
 
   console.log(user);
