@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AbilityScore from './AbilityScore';
@@ -8,6 +7,23 @@ import NumBox from './NumBox';
 function CharacterSheet() {
   const { id } = useParams();
   const [characterData, setCharacterData] = useState();
+
+  const inspirationIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="h-6 w-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+      />
+    </svg>
+  );
 
   useEffect(() => {
     fetch(`/api/characters/${id}`)
@@ -115,7 +131,7 @@ function CharacterSheet() {
   }
 
   return (
-    <div className="aspect-csheet no-scrollbar grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
+    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 overflow-y-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
       <div className="sheet-field col-span-3">
         <div className="flex gap-x-2">
           <div className="aspect-square w-1/4 overflow-hidden rounded-lg">
@@ -164,33 +180,50 @@ function CharacterSheet() {
           value={`${characterData?.current_hp} / ${characterData?.hit_point_max}`}
         />
       </div>
-      <div className="sheet-field col-start-1 row-span-4 flex flex-col justify-around">
-        <AbilityScore stat="STR" score={strength} bonus={statBonus(strength)} />
+      <div className="sheet-field">
+        <h4>Inspiration</h4>
+        <NumBox value={inspirationIcon} />
+      </div>
+
+      <div className="sheet-field col-start-1 row-span-4 row-start-3 flex flex-col justify-around">
+        <AbilityScore
+          stat="STR"
+          score={strength}
+          bonus={statBonusString(strength)}
+        />
         <AbilityScore
           stat="DEX"
           score={dexterity}
-          bonus={statBonus(dexterity)}
+          bonus={statBonusString(dexterity)}
         />
         <AbilityScore
           stat="CON"
           score={constitution}
-          bonus={statBonus(constitution)}
+          bonus={statBonusString(constitution)}
         />
         <AbilityScore
           stat="INT"
           score={intelligence}
-          bonus={statBonus(intelligence)}
+          bonus={statBonusString(intelligence)}
         />
-        <AbilityScore stat="WIS" score={wisdom} bonus={statBonus(wisdom)} />
-        <AbilityScore stat="CHA" score={charisma} bonus={statBonus(charisma)} />
+        <AbilityScore
+          stat="WIS"
+          score={wisdom}
+          bonus={statBonusString(wisdom)}
+        />
+        <AbilityScore
+          stat="CHA"
+          score={charisma}
+          bonus={statBonusString(charisma)}
+        />
       </div>
-      <div className="sheet-field col-span-2 row-span-4 flex flex-col justify-between overflow-y-hidden">
+      <div className="sheet-field col-span-2 row-span-5 flex flex-col justify-between overflow-y-hidden">
         <h4>Skills</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1">
           {skills_list}
         </ul>
       </div>
-      <div className="sheet-field col-span-3 row-span-4">
+      <div className="sheet-field col-span-3 row-span-5">
         <h4>Actions</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>
@@ -217,7 +250,7 @@ function CharacterSheet() {
           }
         />
       </div>
-      <div className="sheet-field col-span-3 row-span-3">
+      <div className="sheet-field col-span-3 row-span-4">
         <h4>Spells/Abilities</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>
