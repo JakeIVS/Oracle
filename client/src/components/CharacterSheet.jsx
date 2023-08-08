@@ -131,7 +131,7 @@ function CharacterSheet() {
   }
 
   return (
-    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 overflow-y-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
+    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 overflow-hidden bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
       <div className="sheet-field col-span-3">
         <div className="flex gap-x-2">
           <div className="aspect-square w-1/4 overflow-hidden rounded-lg">
@@ -185,7 +185,7 @@ function CharacterSheet() {
         <NumBox value={inspirationIcon} />
       </div>
 
-      <div className="sheet-field col-start-1 row-span-4 row-start-3 flex flex-col justify-around">
+      <div className="sheet-field col-start-1 row-span-4 row-start-3 flex flex-col justify-around gap-1 px-3">
         <AbilityScore
           stat="STR"
           score={strength}
