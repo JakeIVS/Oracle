@@ -8,6 +8,10 @@ function UserDash({ id, firstName, lastName }) {
     navigate('/characters', { replace: false });
   }
 
+  function campaignList() {
+    navigate('/campaigns', { replace: false });
+  }
+
   function newCharacter() {
     navigate('/characters/new', { replace: false });
   }
@@ -23,7 +27,7 @@ function UserDash({ id, firstName, lastName }) {
           Welcome, {firstName}
         </h2>
         <div
-          className="group col-span-3 flex flex-col-reverse overflow-x-hidden overflow-y-hidden outline outline-1 outline-n-dark"
+          className="group col-span-3 flex cursor-pointer flex-col-reverse overflow-x-hidden overflow-y-hidden outline outline-1 outline-n-dark"
           onClick={characterList}
         >
           <img
@@ -36,12 +40,15 @@ function UserDash({ id, firstName, lastName }) {
           </h3>
         </div>
         <div
-          className="transition-color flex flex-col-reverse justify-evenly overflow-x-hidden overflow-y-hidden bg-primary text-center outline outline-1 outline-n-dark duration-200 hover:text-xl"
+          className="transition-color flex cursor-pointer flex-col-reverse justify-evenly overflow-x-hidden overflow-y-hidden bg-primary text-center outline outline-1 outline-n-dark duration-200 hover:text-xl"
           onClick={newCharacter}
         >
           <h3 className="px-5 text-center">Create a Character</h3>
         </div>
-        <div className="group col-span-3 flex flex-col-reverse overflow-x-hidden overflow-y-hidden outline outline-1 outline-n-dark">
+        <div
+          className="group col-span-3 flex cursor-pointer flex-col-reverse overflow-x-hidden overflow-y-hidden outline outline-1 outline-n-dark"
+          onClick={campaignList}
+        >
           <img
             src="src/assets/minis.jpg"
             alt="my campaigns"
@@ -52,7 +59,7 @@ function UserDash({ id, firstName, lastName }) {
           </h3>
         </div>
         <div
-          className="flex flex-col-reverse justify-evenly overflow-x-hidden overflow-y-hidden bg-primary px-5 text-center outline outline-1 outline-n-dark transition-all duration-200 hover:text-xl"
+          className="flex cursor-pointer flex-col-reverse justify-evenly overflow-x-hidden overflow-y-hidden bg-primary px-5 text-center outline outline-1 outline-n-dark transition-all duration-200 hover:text-xl"
           onClick={() => newCampaign()}
         >
           Start a Campaign
