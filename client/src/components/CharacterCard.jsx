@@ -48,7 +48,7 @@ function CharacterCard({
 
   return (
     <div
-      className="q group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-gradient-to-t from-n-dark to-n-light shadow-lg shadow-black outline outline-primary transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-[#485D69]"
+      className="q group mt-6 grid h-14 grid-cols-5 gap-x-3 overflow-visible rounded-full bg-gradient-to-t from-n-dark to-n-light shadow-lg shadow-black outline outline-primary transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-neutral-500"
       onClick={() => navigate(`/characters/${id}`, { replace: false })}
     >
       <div className="absolute row-span-2 h-20 w-20 translate-x-[-20%] translate-y-[-30%] overflow-hidden rounded-full bg-gray-500 outline outline-primary">
