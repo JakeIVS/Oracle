@@ -31,7 +31,6 @@ class User(db.Model, SerializerMixin):
     _password_hash = db.Column(db.String, nullable=False)
     theme = db.Column(db.String)
 
-    campaigns = db.relationship('Campaign', backref='dm')
 
     @hybrid_property
     def password_hash(self):
@@ -77,6 +76,7 @@ class Character(db.Model, SerializerMixin):
 
     spells = db.relationship('Spell', secondary=known_spell, backref='characters', cascade='all')
     owner = db.relationship('User', backref='characters')
+    campaign = db.relationship('Campaign', backref="characters")
 
 class Campaign(db.Model, SerializerMixin):
     __tablename__ = 'campaigns'
@@ -88,7 +88,7 @@ class Campaign(db.Model, SerializerMixin):
     name = db.Column(db.String)
     join_code = db.Column(db.String)
 
-    characters = db.relationship('Character', backref='campaign')
+    dm = db.relationship('User', backref='campaigns')
 
 class Spell(db.Model, SerializerMixin):
     __tablename__ = 'spells'

@@ -35,6 +35,13 @@ function CharacterSheet() {
     return Math.floor(stat / 2 - 5);
   }
 
+  function statBonusString(stat) {
+    if (statBonus(stat) > 0) {
+      return `+${statBonus(stat)}`;
+    }
+    return `${statBonus(stat)}`;
+  }
+
   const skillScores = {
     Acrobatics: dexterity,
     'Animal Handling': wisdom,
@@ -61,7 +68,7 @@ function CharacterSheet() {
     return (
       <li className="flex justify-between bg-gradient-to-t from-n-light to-n-dark px-1 py-2 outline outline-1 ">
         <p className="self-center">{skill}</p>
-        <NumBox value={statBonus(skillScores[skill])} />
+        <NumBox value={statBonusString(skillScores[skill])} />
       </li>
     );
   });
@@ -185,6 +192,7 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-3 row-span-4">
         <h4>Actions</h4>
+        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>
       <div className="sheet-field">
         <h4>Spell Attack</h4>
@@ -211,6 +219,7 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-3 row-span-3">
         <h4>Spells/Abilities</h4>
+        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>
       <div className="sheet-field col-span-4 row-span-2 grid grid-cols-2 gap-2">
         <h4 className="col-span-2">Saving Throws</h4>
