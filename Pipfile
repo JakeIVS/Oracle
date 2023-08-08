@@ -12,6 +12,7 @@ flask-restful = "*"
 flask-bcrypt = "*"
 flask-cors = "*"
 requests = "*"
+flask-socketio = "*"
 
 [dev-packages]
 
