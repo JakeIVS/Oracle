@@ -58,8 +58,22 @@ function CharacterSheet() {
 
   const skills_array = Object.keys(skillScores);
   const skills_list = skills_array.map(skill => {
-    return <li>{skill}</li>;
+    return (
+      <li className="flex justify-between bg-gradient-to-t from-n-light to-n-dark px-1 py-2 outline outline-1 ">
+        <p className="self-center">{skill}</p>
+        <NumBox value={statBonus(skillScores[skill])} />
+      </li>
+    );
   });
+
+  const spellModifiers = {
+    wizard: intelligence,
+    warlock: charisma,
+    sorcerer: charisma,
+    paladin: wisdom,
+    cleric: wisdom,
+    druid: wisdom,
+  };
 
   // function maxHP(charClass, level) {
   //   if (charClass === 'wizard' || charClass === 'sorcerer') {
@@ -96,13 +110,24 @@ function CharacterSheet() {
   return (
     <div className="aspect-csheet no-scrollbar grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
       <div className="sheet-field col-span-3">
-        <h3 className="font-serif font-bold">{characterData?.name}</h3>
-        <p>
-          {characterData?.race} | {characterData?.gender}
-        </p>
-        <p>
-          Level {characterData?.level} | {characterClass}
-        </p>
+        <div className="flex gap-x-2">
+          <div className="aspect-square w-1/4 overflow-hidden rounded-lg">
+            <img
+              src={characterData?.image_url}
+              alt="character portrait"
+              className=""
+            />
+          </div>
+          <div>
+            <h3 className="font-serif font-bold">{characterData?.name}</h3>
+            <p>
+              {characterData?.race} | {characterData?.gender}
+            </p>
+            <p>
+              Level {characterData?.level} | {characterClass}
+            </p>
+          </div>
+        </div>
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
@@ -152,7 +177,7 @@ function CharacterSheet() {
         <AbilityScore stat="WIS" score={wisdom} bonus={statBonus(wisdom)} />
         <AbilityScore stat="CHA" score={charisma} bonus={statBonus(charisma)} />
       </div>
-      <div className="sheet-field col-span-2 row-span-4 flex flex-col justify-between">
+      <div className="sheet-field col-span-2 row-span-4 flex flex-col justify-between overflow-y-hidden">
         <h4>Skills</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1">
           {skills_list}
@@ -163,12 +188,26 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field">
         <h4>Spell Attack</h4>
+        <NumBox
+          value={
+            spellModifiers[characterData?.character_class] +
+            profBonus(characterData?.level)
+          }
+        />
       </div>
       <div className="sheet-field">
         <h4>Spell Modifier</h4>
+        <NumBox value={spellModifiers[characterData?.character_class]} />
       </div>
       <div className="sheet-field">
         <h4>Spell Save DC</h4>
+        <NumBox
+          value={
+            8 +
+            profBonus(characterData?.level) +
+            statBonus(spellModifiers[characterData?.character_class])
+          }
+        />
       </div>
       <div className="sheet-field col-span-3 row-span-3">
         <h4>Spells/Abilities</h4>
