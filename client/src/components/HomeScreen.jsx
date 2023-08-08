@@ -5,7 +5,7 @@ function HomeScreen() {
   const navigate = useNavigate();
 
   return (
-    <div className="h-full w-full bg-gradient-to-t from-primary to-secondary">
+    <div className="h-full w-full bg-gradient-to-t from-primary to-secondary p-3">
       <h1>You are not signed in</h1>
       <div>
         <button
