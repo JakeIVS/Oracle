@@ -1,9 +1,10 @@
 from flask import Flask, jsonify, request, abort, make_response, session
 from flask_restful import Resource
 from models import *
-from config import app, db, api
+from config import app, db, api, socket_io
 from flask_migrate import Migrate  # Import Flask-Migrate
 from flask_cors import CORS
+from flask_socketio import join_room, leave_room
 
 # Initialize Flask-Migrate
 migrate = Migrate(app, db)
@@ -174,6 +175,16 @@ api.add_resource(CampaignsId, '/campaigns/<int:id>')
 api.add_resource(Characters, '/characters')
 api.add_resource(CharactersId, '/characters/<int:id>')
 
+
+@socket_io.on('connect')
+def handle_connect():
+    print('new connection')
+
+@socket_io.on('join_room')
+def handle_connect(room_code):
+    print(f'Joining Campaign Session: code [{room_code}]')
+    session['room'] = room_code
+    join_room(room_code)
 
 
 

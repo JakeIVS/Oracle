@@ -6,6 +6,7 @@ from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
+from flask_socketio import SocketIO
 from sqlalchemy import MetaData
 
 app = Flask(__name__)
@@ -36,7 +37,8 @@ db = SQLAlchemy(metadata=metadata)
 
 migrate = Migrate(app, db)
 db.init_app(app)
-
+# socket_io configurations based of of socket_testing by David Doan
+socket_io = SocketIO(app, cors_allowed_origins="*")
 bcrypt = Bcrypt(app)
 
 api = Api(app)
