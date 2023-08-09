@@ -4,6 +4,7 @@ import SavingThrow from './SavingThrow';
 import NumBtn from './NumBtn';
 import AbilityTemplate from './AbilityTemplate';
 import SaveTemplate from './SaveTemplate';
+import { io } from 'socket.io-client';
 
 function CampaignControlPanel() {
   const { id } = useParams();
