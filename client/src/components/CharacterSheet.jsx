@@ -256,12 +256,18 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-4 row-span-2 grid grid-cols-2 gap-2">
         <h4 className="col-span-2">Saving Throws</h4>
-        <SavingThrow />
-        <SavingThrow />
-        <SavingThrow />
-        <SavingThrow />
-        <SavingThrow />
-        <SavingThrow />
+        <SavingThrow stat="Strength" bonus={statBonusString(strength)} />
+        <SavingThrow stat="Dexterity" bonus={statBonusString(dexterity)} />
+        <SavingThrow
+          stat="Constitution"
+          bonus={statBonusString(constitution)}
+        />
+        <SavingThrow
+          stat="Intelligence"
+          bonus={statBonusString(intelligence)}
+        />
+        <SavingThrow stat="Wisdom" bonus={statBonusString(wisdom)} />
+        <SavingThrow stat="Charisma" bonus={statBonusString(charisma)} />
       </div>
       <div className="sheet-field col-span-5 row-span-2">
         <h4>Feats and Racial Traits</h4>
