@@ -1,24 +1,12 @@
-import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AbilityScore from './AbilityScore';
 import SavingThrow from './SavingThrow';
-import NumBox from './NumBox';
+import NumBtn from './NumBtn';
+import AbilityTemplate from './AbilityTemplate';
 
 function CampaignControlPanel() {
   const { id } = useParams();
   const [campaignData, setCampaignData] = useState();
-
-  const cubeIcon = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="h-6 w-6"
-    >
-      <path d="M12.378 1.602a.75.75 0 00-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 00.372-.648V7.93zM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 00.372.648l8.628 5.033z" />
-    </svg>
-  );
 
   useEffect(() => {
     fetch(`/api/campaigns/${id}`)
@@ -55,7 +43,7 @@ function CampaignControlPanel() {
     return (
       <li className="flex justify-between bg-gradient-to-t from-n-light to-n-dark px-1 py-2 outline outline-1 ">
         <p className="self-center">{skill}</p>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={7 + skill} />
       </li>
     );
   });
@@ -93,35 +81,35 @@ function CampaignControlPanel() {
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={1} />
       </div>
       <div className="sheet-field">
         <h4>AC</h4>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={2} />
       </div>
       <div className="sheet-field">
         <h4>Initiative</h4>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={3} />
       </div>
       <div className=" sheet-field">
         <h4>Proficiency Bonus</h4>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={4} />
       </div>
       <div className="sheet-field col-span-2">
         <h4>Health</h4>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={5} />
       </div>
       <div className="sheet-field">
         <h4>Inspiration</h4>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={6} />
       </div>
       <div className="sheet-field col-start-1 row-span-4 row-start-3 flex flex-col justify-around">
-        <AbilityScore stat="STR" score="??" bonus={cubeIcon} />
-        <AbilityScore stat="DEX" score="??" bonus={cubeIcon} />
-        <AbilityScore stat="CON" score="??" bonus={cubeIcon} />
-        <AbilityScore stat="INT" score="??" bonus={cubeIcon} />
-        <AbilityScore stat="WIS" score="??" bonus={cubeIcon} />
-        <AbilityScore stat="CHA" score="??" bonus={cubeIcon} />
+        <AbilityTemplate stat="STR" score="??" id={8} />
+        <AbilityTemplate stat="DEX" score="??" id={9} />
+        <AbilityTemplate stat="CON" score="??" id={10} />
+        <AbilityTemplate stat="INT" score="??" id={11} />
+        <AbilityTemplate stat="WIS" score="??" id={12} />
+        <AbilityTemplate stat="CHA" score="??" id={13} />
       </div>
       <div className="sheet-field col-span-2 row-span-5 flex flex-col justify-between overflow-y-hidden">
         <h4>Skills</h4>
@@ -135,15 +123,15 @@ function CampaignControlPanel() {
       </div>
       <div className="sheet-field">
         <h4>Spell Attack</h4>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={15} />
       </div>
       <div className="sheet-field">
         <h4>Spell Modifier</h4>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={16} />
       </div>
       <div className="sheet-field">
         <h4>Spell Save DC</h4>
-        <NumBox value={cubeIcon} />
+        <NumBtn value={17} />
       </div>
       <div className="sheet-field col-span-3 row-span-4">
         <h4>Spells/Abilities</h4>
