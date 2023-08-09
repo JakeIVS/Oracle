@@ -186,7 +186,11 @@ def handle_connect(room_code):
     session['room'] = room_code
     join_room(room_code)
 
+@socket_io.on('return_field')
+def handle_return_field(field_id):
+    socket_io.emit('from_server', field_id)
+    print(f'Highlighting: {field_id}')
 
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    socket_io.run(app, port=5555)
