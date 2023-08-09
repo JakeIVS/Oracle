@@ -84,7 +84,7 @@ function CharacterSheet() {
     return (
       <li className="flex justify-between border-t-2 border-black px-1 py-2">
         <p className="self-center">{skill}</p>
-        <NumBox value={statBonusString(skillScores[skill])} />
+        <NumBox value={statBonusString(skillScores[skill])} id={7 + skill} />
       </li>
     );
   });
@@ -154,11 +154,11 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
-        <NumBox value={characterData?.speed} />
+        <NumBox value={characterData?.speed} id={1} />
       </div>
       <div className="sheet-field">
         <h4>AC</h4>
-        <NumBox value={10 + statBonus(dexterity)} />
+        <NumBox value={10 + statBonus(dexterity)} id={2} />
       </div>
       <div className="sheet-field">
         <h4>Initiative</h4>
@@ -168,21 +168,23 @@ function CharacterSheet() {
               ? `+${statBonus(dexterity)}`
               : `${statBonus(dexterity)}`
           }
+          id={3}
         />
       </div>
       <div className=" sheet-field">
         <h4>Proficiency Bonus</h4>
-        <NumBox value={`+${profBonus(characterData?.level)}`} />
+        <NumBox value={`+${profBonus(characterData?.level)}`} id={4} />
       </div>
       <div className="sheet-field col-span-2">
         <h4>Health</h4>
         <NumBox
           value={`${characterData?.current_hp} / ${characterData?.hit_point_max}`}
+          id={5}
         />
       </div>
       <div className="sheet-field">
         <h4>Inspiration</h4>
-        <NumBox value={inspirationIcon} />
+        <NumBox value={inspirationIcon} id={6} />
       </div>
 
       <div className="sheet-field col-start-1 row-span-4 row-start-3 flex flex-col justify-around gap-1 px-3">
@@ -190,31 +192,37 @@ function CharacterSheet() {
           stat="STR"
           score={strength}
           bonus={statBonusString(strength)}
+          id={8}
         />
         <AbilityScore
           stat="DEX"
           score={dexterity}
           bonus={statBonusString(dexterity)}
+          id={9}
         />
         <AbilityScore
           stat="CON"
           score={constitution}
           bonus={statBonusString(constitution)}
+          id={10}
         />
         <AbilityScore
           stat="INT"
           score={intelligence}
           bonus={statBonusString(intelligence)}
+          id={11}
         />
         <AbilityScore
           stat="WIS"
           score={wisdom}
           bonus={statBonusString(wisdom)}
+          id={12}
         />
         <AbilityScore
           stat="CHA"
           score={charisma}
           bonus={statBonusString(charisma)}
+          id={13}
         />
       </div>
       <div className="sheet-field col-span-2 row-span-5 flex flex-col justify-between overflow-y-hidden">
