@@ -14,6 +14,7 @@ import SideBar from './components/SideBar';
 import NewCampaign from './components/NewCampaign';
 import CampaignList from './components/CampaignList';
 import CampaignControlPanel from './components/CampaignControlPanel';
+import SocketTest from './components/SocketTest';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -93,6 +94,7 @@ function App() {
             path="/campaigns/:id"
             element={!user ? <ErrorScreen /> : <CampaignControlPanel />}
           />
+          <Route path="/socket-test" element={<SocketTest />} />
         </Routes>
       </div>
     </div>
