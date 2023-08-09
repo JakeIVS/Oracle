@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import SavingThrow from './SavingThrow';
 import NumBtn from './NumBtn';
 import AbilityTemplate from './AbilityTemplate';
+import SaveTemplate from './SaveTemplate';
 
 function CampaignControlPanel() {
   const { id } = useParams();
@@ -64,8 +65,12 @@ function CampaignControlPanel() {
   //   }
   // }
 
+  function transmit(value) {
+    console.log(value);
+  }
+
   return (
-    <div className="aspect-csheet no-scrollbar grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
+    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
       <div className="sheet-field col-span-3">
         <div className="flex gap-x-2">
           <div className="aspect-square w-1/4 overflow-hidden rounded-lg">
@@ -104,12 +109,12 @@ function CampaignControlPanel() {
         <NumBtn value={6} />
       </div>
       <div className="sheet-field col-start-1 row-span-4 row-start-3 flex flex-col justify-around">
-        <AbilityTemplate stat="STR" score="??" id={8} />
-        <AbilityTemplate stat="DEX" score="??" id={9} />
-        <AbilityTemplate stat="CON" score="??" id={10} />
-        <AbilityTemplate stat="INT" score="??" id={11} />
-        <AbilityTemplate stat="WIS" score="??" id={12} />
-        <AbilityTemplate stat="CHA" score="??" id={13} />
+        <AbilityTemplate stat="STR" score="??" value={8} />
+        <AbilityTemplate stat="DEX" score="??" value={9} />
+        <AbilityTemplate stat="CON" score="??" value={10} />
+        <AbilityTemplate stat="INT" score="??" value={11} />
+        <AbilityTemplate stat="WIS" score="??" value={12} />
+        <AbilityTemplate stat="CHA" score="??" value={13} />
       </div>
       <div className="sheet-field col-span-2 row-span-5 flex flex-col justify-between overflow-y-hidden">
         <h4>Skills</h4>
@@ -117,7 +122,10 @@ function CampaignControlPanel() {
           {skillsList}
         </ul>
       </div>
-      <div className="sheet-field col-span-3 row-span-5">
+      <div
+        className="sheet-field col-span-3 row-span-5"
+        onClick={() => transmit(14)}
+      >
         <h4>Actions</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>
@@ -133,20 +141,26 @@ function CampaignControlPanel() {
         <h4>Spell Save DC</h4>
         <NumBtn value={17} />
       </div>
-      <div className="sheet-field col-span-3 row-span-4">
+      <div
+        className="sheet-field col-span-3 row-span-4"
+        onClick={() => transmit(18)}
+      >
         <h4>Spells/Abilities</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>
       <div className="sheet-field col-span-4 row-span-2 grid grid-cols-2 gap-2">
         <h4 className="col-span-2">Saving Throws</h4>
-        <SavingThrow />
-        <SavingThrow />
-        <SavingThrow />
-        <SavingThrow />
-        <SavingThrow />
-        <SavingThrow />
+        <SaveTemplate stat="Strength" value={19} />
+        <SaveTemplate stat="Dexterity" value={20} />
+        <SaveTemplate stat="Constitution" value={21} />
+        <SaveTemplate stat="Intelligence" value={22} />
+        <SaveTemplate stat="Wisdom" value={23} />
+        <SaveTemplate stat="Charisma" value={24} />
       </div>
-      <div className="sheet-field col-span-5 row-span-2">
+      <div
+        className="sheet-field col-span-5 row-span-2"
+        onClick={() => transmit(25)}
+      >
         <h4>Feats and Racial Traits</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>

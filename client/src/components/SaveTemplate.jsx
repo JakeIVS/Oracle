@@ -1,14 +1,15 @@
 import React from 'react';
+import NumBtn from './NumBtn';
 
-function SavingThrow({ stat, bonus }) {
+function SaveTemplate({ stat, value }) {
   return (
     <div className="flex justify-between overflow-hidden rounded-sm bg-n-dark outline outline-1">
-      <h5 className="pl-1">{stat}</h5>
-      <p className="w-1/6 rounded-r-sm border-l border-l-black bg-n-light pr-1 text-right">
-        {cubeIcon}
-      </p>
+      <h5 className="flex flex-col justify-around pl-3 font-serif">{stat}</h5>
+      <div className="flex w-1/4 justify-center rounded-r-sm border-l border-l-black bg-n-light p-1 text-right">
+        <NumBtn value={value} />
+      </div>
     </div>
   );
 }
 
-export default SavingThrow;
+export default SaveTemplate;

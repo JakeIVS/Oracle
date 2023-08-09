@@ -1,6 +1,6 @@
 import React from 'react';
 
-function NumBtn({ id }) {
+function NumBtn({ value }) {
   const cubeIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,8 +12,15 @@ function NumBtn({ id }) {
     </svg>
   );
 
+  function transmit() {
+    console.log(value);
+  }
+
   return (
-    <div className="w-fit self-center rounded-md bg-n-light p-2 py-1 text-center text-xl font-semibold outline outline-1 hover:bg-n-dark">
+    <div
+      className="w-fit self-center rounded-md bg-n-light p-2 py-1 text-center text-xl font-semibold outline outline-1 hover:bg-n-dark"
+      onClick={transmit}
+    >
       {cubeIcon}
     </div>
   );
