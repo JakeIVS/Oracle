@@ -1,6 +1,12 @@
 import React from 'react';
 
-function NumBtn({ value }) {
+function NumBtn({ value, handleClick, highlightField }) {
+  const defaultStyle =
+    'w-fit self-center rounded-md bg-n-light p-2 py-1 text-center text-xl font-semibold outline outline-1 hover:bg-n-dark';
+
+  const pingStyle =
+    'w-fit self-center rounded-md bg-n-light p-2 py-1 text-center text-xl font-semibold shadow-inner shadow-blue-400 outline outline-blue-700 hover:bg-n-dark';
+
   const cubeIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,14 +18,10 @@ function NumBtn({ value }) {
     </svg>
   );
 
-  function transmit() {
-    console.log(value);
-  }
-
   return (
     <div
-      className="w-fit self-center rounded-md bg-n-light p-2 py-1 text-center text-xl font-semibold outline outline-1 hover:bg-n-dark"
-      onClick={transmit}
+      className={highlightField === value ? pingStyle : defaultStyle}
+      onClick={() => handleClick(value)}
     >
       {cubeIcon}
     </div>

@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom';
 import AbilityScore from './AbilityScore';
 import SavingThrow from './SavingThrow';
 import NumBox from './NumBox';
+import { io } from 'socket.io-client';
+let socket;
 
 function CharacterSheet() {
   const { id } = useParams();
   const [characterData, setCharacterData] = useState();
+  const [highlightField, setHighlightField] = useState(null);
 
   const inspirationIcon = (
     <svg
@@ -32,6 +35,23 @@ function CharacterSheet() {
         console.log(data);
         setCharacterData(data);
       });
+  }, []);
+
+  useEffect(() => {
+    socket = io('ws://localhost:5555');
+    socket.on('from_server', msg => {
+      if (highlightField === msg) {
+        setHighlightField(null);
+      } else {
+        setHighlightField(msg);
+      }
+    });
+    return () => {
+      socket.off('disconnected', msg => {
+        console.log(msg);
+        socket.disconnect();
+      });
+    };
   }, []);
 
   // set correctly-cased class
@@ -84,7 +104,11 @@ function CharacterSheet() {
     return (
       <li className="flex justify-between border-t-2 border-black px-1 py-2">
         <p className="self-center">{skill}</p>
-        <NumBox value={statBonusString(skillScores[skill])} id={7 + skill} />
+        <NumBox
+          value={statBonusString(skillScores[skill])}
+          id={7 + skill}
+          highlightField={highlightField}
+        />
       </li>
     );
   });
@@ -131,7 +155,7 @@ function CharacterSheet() {
   }
 
   return (
-    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 overflow-hidden bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
+    <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 overflow-hidden overflow-y-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
       <div className="sheet-field col-span-3">
         <div className="flex gap-x-2">
           <div className="aspect-square w-1/4 overflow-hidden rounded-lg">
@@ -154,11 +178,19 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
-        <NumBox value={characterData?.speed} id={1} />
+        <NumBox
+          value={characterData?.speed}
+          id={1}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field">
         <h4>AC</h4>
-        <NumBox value={10 + statBonus(dexterity)} id={2} />
+        <NumBox
+          value={10 + statBonus(dexterity)}
+          id={2}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field">
         <h4>Initiative</h4>
@@ -169,22 +201,32 @@ function CharacterSheet() {
               : `${statBonus(dexterity)}`
           }
           id={3}
+          highlightField={highlightField}
         />
       </div>
       <div className=" sheet-field">
         <h4>Proficiency Bonus</h4>
-        <NumBox value={`+${profBonus(characterData?.level)}`} id={4} />
+        <NumBox
+          value={`+${profBonus(characterData?.level)}`}
+          id={4}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field col-span-2">
         <h4>Health</h4>
         <NumBox
           value={`${characterData?.current_hp} / ${characterData?.hit_point_max}`}
           id={5}
+          highlightField={highlightField}
         />
       </div>
       <div className="sheet-field">
         <h4>Inspiration</h4>
-        <NumBox value={inspirationIcon} id={6} />
+        <NumBox
+          value={inspirationIcon}
+          id={6}
+          highlightField={highlightField}
+        />
       </div>
 
       <div className="sheet-field col-start-1 row-span-4 row-start-3 flex flex-col justify-around gap-1 px-3">
@@ -193,41 +235,53 @@ function CharacterSheet() {
           score={strength}
           bonus={statBonusString(strength)}
           id={8}
+          highlightField={highlightField}
         />
         <AbilityScore
           stat="DEX"
           score={dexterity}
           bonus={statBonusString(dexterity)}
           id={9}
+          highlightField={highlightField}
         />
         <AbilityScore
           stat="CON"
           score={constitution}
           bonus={statBonusString(constitution)}
           id={10}
+          highlightField={highlightField}
         />
         <AbilityScore
           stat="INT"
           score={intelligence}
           bonus={statBonusString(intelligence)}
           id={11}
+          highlightField={highlightField}
         />
         <AbilityScore
           stat="WIS"
           score={wisdom}
           bonus={statBonusString(wisdom)}
           id={12}
+          highlightField={highlightField}
         />
         <AbilityScore
           stat="CHA"
           score={charisma}
           bonus={statBonusString(charisma)}
           id={13}
+          highlightField={highlightField}
         />
       </div>
       <div className="sheet-field col-span-2 row-span-5 flex flex-col justify-between overflow-y-hidden">
         <h4>Skills</h4>
-        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1">
+        <ul
+          className={
+            typeof highlightField === 'string'
+              ? 'h-full overflow-y-scroll rounded-md bg-n-light p-2 shadow-inner shadow-blue-400 outline outline-blue-700'
+              : 'h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1'
+          }
+        >
           {skills_list}
         </ul>
       </div>
@@ -242,11 +296,17 @@ function CharacterSheet() {
             spellModifiers[characterData?.character_class] +
             profBonus(characterData?.level)
           }
+          id={15}
+          highlightField={highlightField}
         />
       </div>
       <div className="sheet-field">
         <h4>Spell Modifier</h4>
-        <NumBox value={spellModifiers[characterData?.character_class]} />
+        <NumBox
+          value={spellModifiers[characterData?.character_class]}
+          id={16}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field">
         <h4>Spell Save DC</h4>
@@ -256,6 +316,8 @@ function CharacterSheet() {
             profBonus(characterData?.level) +
             statBonus(spellModifiers[characterData?.character_class])
           }
+          id={17}
+          highlightField={highlightField}
         />
       </div>
       <div className="sheet-field col-span-3 row-span-4">
@@ -264,18 +326,42 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-4 row-span-2 grid grid-cols-2 gap-2">
         <h4 className="col-span-2">Saving Throws</h4>
-        <SavingThrow stat="Strength" bonus={statBonusString(strength)} />
-        <SavingThrow stat="Dexterity" bonus={statBonusString(dexterity)} />
+        <SavingThrow
+          stat="Strength"
+          bonus={statBonusString(strength)}
+          id={19}
+          highlightField={highlightField}
+        />
+        <SavingThrow
+          stat="Dexterity"
+          bonus={statBonusString(dexterity)}
+          id={20}
+          highlightField={highlightField}
+        />
         <SavingThrow
           stat="Constitution"
           bonus={statBonusString(constitution)}
+          id={21}
+          highlightField={highlightField}
         />
         <SavingThrow
           stat="Intelligence"
           bonus={statBonusString(intelligence)}
+          id={22}
+          highlightField={highlightField}
         />
-        <SavingThrow stat="Wisdom" bonus={statBonusString(wisdom)} />
-        <SavingThrow stat="Charisma" bonus={statBonusString(charisma)} />
+        <SavingThrow
+          stat="Wisdom"
+          bonus={statBonusString(wisdom)}
+          id={23}
+          highlightField={highlightField}
+        />
+        <SavingThrow
+          stat="Charisma"
+          bonus={statBonusString(charisma)}
+          id={24}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field col-span-5 row-span-2">
         <h4>Feats and Racial Traits</h4>

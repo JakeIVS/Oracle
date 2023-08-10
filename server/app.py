@@ -189,8 +189,13 @@ def handle_connect(room_code):
 @socket_io.on('return_field')
 def handle_return_field(field_id):
     socket_io.emit('from_server', field_id)
-    print(f'Highlighting: {field_id}')
+    print(f'Recieved: {field_id}')
 
+@socket_io.on('disconnect')
+def disconnected():
+    """event listener when client disconnects to the server"""
+    print('user disconnected')
+    socket_io.emit('disconnected', "User disconnected")
 
 if __name__ == '__main__':
     socket_io.run(app, port=5555)

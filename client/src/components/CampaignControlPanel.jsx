@@ -23,11 +23,27 @@ function CampaignControlPanel() {
 
   useEffect(() => {
     socket = io('ws://localhost:5555');
-    socket.on('from-server', msg => {
-      console.log(highlightField);
-      setHighlightField(msg);
+    socket.on('from_server', msg => {
+      if (highlightField === msg) {
+        setHighlightField(null);
+      } else {
+        setHighlightField(msg);
+      }
     });
-  });
+    return () => {
+      socket.off('disconnected', msg => {
+        console.log(msg);
+        socket.disconnect();
+      });
+    };
+  }, []);
+
+  function returnField(value) {
+    console.log(`Emitting: ${value}`);
+    socket.emit('return_field', value);
+  }
+
+  console.log(highlightField);
 
   // Create list of skills
   const skillsArray = [
@@ -55,7 +71,11 @@ function CampaignControlPanel() {
     return (
       <li className="flex justify-between bg-gradient-to-t from-n-light to-n-dark px-1 py-2 outline outline-1 ">
         <p className="self-center">{skill}</p>
-        <NumBtn value={7 + skill} />
+        <NumBtn
+          value={7 + skill}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </li>
     );
   });
@@ -76,10 +96,6 @@ function CampaignControlPanel() {
   //   }
   // }
 
-  function transmit(value) {
-    console.log(value);
-  }
-
   return (
     <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
       <div className="sheet-field col-span-3">
@@ -97,80 +113,188 @@ function CampaignControlPanel() {
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
-        <NumBtn value={1} />
+        <NumBtn
+          value={1}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field">
         <h4>AC</h4>
-        <NumBtn value={2} />
+        <NumBtn
+          value={2}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field">
         <h4>Initiative</h4>
-        <NumBtn value={3} />
+        <NumBtn
+          value={3}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div className=" sheet-field">
         <h4>Proficiency Bonus</h4>
-        <NumBtn value={4} />
+        <NumBtn
+          value={4}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field col-span-2">
         <h4>Health</h4>
-        <NumBtn value={5} />
+        <NumBtn
+          value={5}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field">
         <h4>Inspiration</h4>
-        <NumBtn value={6} />
+        <NumBtn
+          value={6}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field col-start-1 row-span-4 row-start-3 flex flex-col justify-around">
-        <AbilityTemplate stat="STR" score="??" value={8} />
-        <AbilityTemplate stat="DEX" score="??" value={9} />
-        <AbilityTemplate stat="CON" score="??" value={10} />
-        <AbilityTemplate stat="INT" score="??" value={11} />
-        <AbilityTemplate stat="WIS" score="??" value={12} />
-        <AbilityTemplate stat="CHA" score="??" value={13} />
+        <AbilityTemplate
+          stat="STR"
+          score="??"
+          value={8}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <AbilityTemplate
+          stat="DEX"
+          score="??"
+          value={9}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <AbilityTemplate
+          stat="CON"
+          score="??"
+          value={10}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <AbilityTemplate
+          stat="INT"
+          score="??"
+          value={11}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <AbilityTemplate
+          stat="WIS"
+          score="??"
+          value={12}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <AbilityTemplate
+          stat="CHA"
+          score="??"
+          value={13}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field col-span-2 row-span-5 flex flex-col justify-between overflow-y-hidden">
         <h4>Skills</h4>
-        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1">
+        <ul
+          className={
+            typeof highlightField === 'string'
+              ? 'h-full overflow-y-scroll rounded-md bg-n-light p-2 shadow-inner shadow-blue-400 outline outline-blue-700'
+              : 'h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1'
+          }
+        >
           {skillsList}
         </ul>
       </div>
       <div
         className="sheet-field col-span-3 row-span-5"
-        onClick={() => transmit(14)}
+        onClick={() => returnField(14)}
       >
         <h4>Actions</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>
       <div className="sheet-field">
         <h4>Spell Attack</h4>
-        <NumBtn value={15} />
+        <NumBtn
+          value={15}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field">
         <h4>Spell Modifier</h4>
-        <NumBtn value={16} />
+        <NumBtn
+          value={16}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div className="sheet-field">
         <h4>Spell Save DC</h4>
-        <NumBtn value={17} />
+        <NumBtn
+          value={17}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div
         className="sheet-field col-span-3 row-span-4"
-        onClick={() => transmit(18)}
+        onClick={() => returnField(18)}
       >
         <h4>Spells/Abilities</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
       </div>
       <div className="sheet-field col-span-4 row-span-2 grid grid-cols-2 gap-2">
         <h4 className="col-span-2">Saving Throws</h4>
-        <SaveTemplate stat="Strength" value={19} />
-        <SaveTemplate stat="Dexterity" value={20} />
-        <SaveTemplate stat="Constitution" value={21} />
-        <SaveTemplate stat="Intelligence" value={22} />
-        <SaveTemplate stat="Wisdom" value={23} />
-        <SaveTemplate stat="Charisma" value={24} />
+        <SaveTemplate
+          stat="Strength"
+          value={19}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <SaveTemplate
+          stat="Dexterity"
+          value={20}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <SaveTemplate
+          stat="Constitution"
+          value={21}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <SaveTemplate
+          stat="Intelligence"
+          value={22}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <SaveTemplate
+          stat="Wisdom"
+          value={23}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
+        <SaveTemplate
+          stat="Charisma"
+          value={24}
+          handleClick={returnField}
+          highlightField={highlightField}
+        />
       </div>
       <div
         className="sheet-field col-span-5 row-span-2"
-        onClick={() => transmit(25)}
+        onClick={() => returnField(25)}
       >
         <h4>Feats and Racial Traits</h4>
         <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
