@@ -4,7 +4,7 @@ import { Socket, io } from 'socket.io-client';
 function SocketTest() {
   const [returnVal, setReturnVal] = useState('');
   const socket = io('ws://localhost:5555');
-  socket.emit('return_num', 6);
+  socket.emit('return_field', 6);
   socket.on('from_server', number => console.log(number));
 
   return (
