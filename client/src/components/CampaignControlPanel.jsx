@@ -99,7 +99,7 @@ function CampaignControlPanel() {
   return (
     <div className="aspect-csheet grid h-full w-full grid-cols-9 gap-1 overflow-scroll bg-gradient-to-t from-secondary to-primary p-4 xl:px-[15%]">
       <div className="sheet-field col-span-3">
-        <div className="flex gap-x-2">
+        <div className="flex gap-x-2" onClick={() => returnField(null)}>
           <div className="aspect-square w-1/4 overflow-hidden rounded-lg">
             <img
               src="/src/assets/placeholder-portrait.jpg"
@@ -220,7 +220,13 @@ function CampaignControlPanel() {
         onClick={() => returnField(14)}
       >
         <h4>Actions</h4>
-        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
+        <ul
+          className={
+            highlightField === 14
+              ? 'h-full overflow-y-scroll rounded-md bg-n-light p-2 shadow-inner shadow-blue-400 outline outline-blue-700'
+              : 'h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1'
+          }
+        ></ul>
       </div>
       <div className="sheet-field">
         <h4>Spell Attack</h4>
@@ -251,7 +257,13 @@ function CampaignControlPanel() {
         onClick={() => returnField(18)}
       >
         <h4>Spells/Abilities</h4>
-        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
+        <ul
+          className={
+            highlightField === 18
+              ? 'h-full overflow-y-scroll rounded-md bg-n-light p-2 shadow-inner shadow-blue-400 outline outline-blue-700'
+              : 'h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1'
+          }
+        ></ul>
       </div>
       <div className="sheet-field col-span-4 row-span-2 grid grid-cols-2 gap-2">
         <h4 className="col-span-2">Saving Throws</h4>
@@ -297,7 +309,13 @@ function CampaignControlPanel() {
         onClick={() => returnField(25)}
       >
         <h4>Feats and Racial Traits</h4>
-        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
+        <ul
+          className={
+            highlightField === 25
+              ? 'h-full overflow-y-scroll rounded-md bg-n-light p-2 shadow-inner shadow-blue-400 outline outline-blue-700'
+              : 'h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1'
+          }
+        ></ul>
       </div>
     </div>
   );

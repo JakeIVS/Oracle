@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { createRoutesFromChildren, useParams } from 'react-router-dom';
 import AbilityScore from './AbilityScore';
 import SavingThrow from './SavingThrow';
 import NumBox from './NumBox';
@@ -121,6 +121,8 @@ function CharacterSheet() {
     cleric: wisdom,
     druid: wisdom,
   };
+
+  // add the function below on character creation form
 
   // function maxHP(charClass, level) {
   //   if (charClass === 'wizard' || charClass === 'sorcerer') {
@@ -287,7 +289,13 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-3 row-span-5">
         <h4>Actions</h4>
-        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
+        <ul
+          className={
+            highlightField === 14
+              ? 'h-full overflow-y-scroll rounded-md bg-n-light p-2 shadow-inner shadow-blue-400 outline outline-blue-700'
+              : 'h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1'
+          }
+        ></ul>
       </div>
       <div className="sheet-field">
         <h4>Spell Attack</h4>
@@ -322,7 +330,13 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-3 row-span-4">
         <h4>Spells/Abilities</h4>
-        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
+        <ul
+          className={
+            highlightField === 18
+              ? 'h-full overflow-y-scroll rounded-md bg-n-light p-2 shadow-inner shadow-blue-400 outline outline-blue-700'
+              : 'h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1'
+          }
+        ></ul>
       </div>
       <div className="sheet-field col-span-4 row-span-2 grid grid-cols-2 gap-2">
         <h4 className="col-span-2">Saving Throws</h4>
@@ -365,7 +379,13 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-5 row-span-2">
         <h4>Feats and Racial Traits</h4>
-        <ul className="h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1"></ul>
+        <ul
+          className={
+            highlightField === 25
+              ? 'h-full overflow-y-scroll rounded-md bg-n-light p-2 shadow-inner shadow-blue-400 outline outline-blue-700'
+              : 'h-full overflow-y-scroll rounded-md bg-n-light p-2 outline outline-1'
+          }
+        ></ul>
       </div>
     </div>
   );
