@@ -5,10 +5,12 @@ import NumBtn from './NumBtn';
 import AbilityTemplate from './AbilityTemplate';
 import SaveTemplate from './SaveTemplate';
 import { io } from 'socket.io-client';
+let socket;
 
 function CampaignControlPanel() {
   const { id } = useParams();
-  const [campaignData, setCampaignData] = useState();
+  const [campaignData, setCampaignData] = useState({});
+  const [highlightField, setHighlightField] = useState(null);
 
   useEffect(() => {
     fetch(`/api/campaigns/${id}`)
@@ -18,6 +20,14 @@ function CampaignControlPanel() {
         setCampaignData(data);
       });
   }, []);
+
+  useEffect(() => {
+    socket = io('ws://localhost:5555');
+    socket.on('from-server', msg => {
+      console.log(highlightField);
+      setHighlightField(msg);
+    });
+  });
 
   // Create list of skills
   const skillsArray = [
