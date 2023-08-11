@@ -1,6 +1,6 @@
 import React from 'react';
 
-function NumBox({ value, id, highlightField }) {
+function NumBox({ value, id, highlightField, setHighlightField }) {
   const defaultStyle =
     'w-fit self-center rounded-md bg-n-light p-2 py-1 text-center text-xl font-semibold outline outline-1 hover:bg-n-dark';
 
@@ -16,6 +16,7 @@ function NumBox({ value, id, highlightField }) {
     let modifier = parseInt(value);
     let total = roll + modifier;
     console.log(`${roll} (${value}) = ${total}`);
+    setHighlightField(null);
   }
 
   return (

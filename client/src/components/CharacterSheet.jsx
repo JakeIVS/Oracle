@@ -184,6 +184,7 @@ function CharacterSheet() {
           value={characterData?.speed}
           id={1}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className="sheet-field">
@@ -192,6 +193,7 @@ function CharacterSheet() {
           value={10 + statBonus(dexterity)}
           id={2}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className="sheet-field">
@@ -204,6 +206,7 @@ function CharacterSheet() {
           }
           id={3}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className=" sheet-field">
@@ -212,6 +215,7 @@ function CharacterSheet() {
           value={`+${profBonus(characterData?.level)}`}
           id={4}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className="sheet-field col-span-2">
@@ -220,6 +224,7 @@ function CharacterSheet() {
           value={`${characterData?.current_hp} / ${characterData?.hit_point_max}`}
           id={5}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className="sheet-field">
@@ -228,6 +233,7 @@ function CharacterSheet() {
           value={inspirationIcon}
           id={6}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
 
@@ -238,6 +244,7 @@ function CharacterSheet() {
           bonus={statBonusString(strength)}
           id={8}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <AbilityScore
           stat="DEX"
@@ -245,6 +252,7 @@ function CharacterSheet() {
           bonus={statBonusString(dexterity)}
           id={9}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <AbilityScore
           stat="CON"
@@ -252,6 +260,7 @@ function CharacterSheet() {
           bonus={statBonusString(constitution)}
           id={10}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <AbilityScore
           stat="INT"
@@ -259,6 +268,7 @@ function CharacterSheet() {
           bonus={statBonusString(intelligence)}
           id={11}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <AbilityScore
           stat="WIS"
@@ -266,6 +276,7 @@ function CharacterSheet() {
           bonus={statBonusString(wisdom)}
           id={12}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <AbilityScore
           stat="CHA"
@@ -273,6 +284,7 @@ function CharacterSheet() {
           bonus={statBonusString(charisma)}
           id={13}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className="sheet-field col-span-2 row-span-5 flex flex-col justify-between overflow-y-hidden">
@@ -307,6 +319,7 @@ function CharacterSheet() {
           }
           id={15}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className="sheet-field">
@@ -317,6 +330,7 @@ function CharacterSheet() {
           )}
           id={16}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className="sheet-field">
@@ -329,6 +343,7 @@ function CharacterSheet() {
           }
           id={17}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className="sheet-field col-span-3 row-span-4">
@@ -348,36 +363,42 @@ function CharacterSheet() {
           bonus={statBonusString(strength)}
           id={19}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <SavingThrow
           stat="Dexterity"
           bonus={statBonusString(dexterity)}
           id={20}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <SavingThrow
           stat="Constitution"
           bonus={statBonusString(constitution)}
           id={21}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <SavingThrow
           stat="Intelligence"
           bonus={statBonusString(intelligence)}
           id={22}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <SavingThrow
           stat="Wisdom"
           bonus={statBonusString(wisdom)}
           id={23}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
         <SavingThrow
           stat="Charisma"
           bonus={statBonusString(charisma)}
           id={24}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </div>
       <div className="sheet-field col-span-5 row-span-2">
