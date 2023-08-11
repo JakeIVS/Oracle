@@ -288,7 +288,7 @@ function CharacterSheet() {
         </ul>
       </div>
       <div className="sheet-field col-span-3 row-span-5">
-        <h4>Actions</h4>
+        <h4>Actions/Inventory</h4>
         <ul
           className={
             highlightField === 14
@@ -301,8 +301,9 @@ function CharacterSheet() {
         <h4>Spell Attack</h4>
         <NumBox
           value={
-            spellModifiers[characterData?.character_class] +
-            profBonus(characterData?.level)
+            '+' +
+            (statBonus(spellModifiers[characterData?.character_class]) +
+              profBonus(characterData?.level))
           }
           id={15}
           highlightField={highlightField}
@@ -311,7 +312,9 @@ function CharacterSheet() {
       <div className="sheet-field">
         <h4>Spell Modifier</h4>
         <NumBox
-          value={spellModifiers[characterData?.character_class]}
+          value={statBonusString(
+            spellModifiers[characterData?.character_class],
+          )}
           id={16}
           highlightField={highlightField}
         />
