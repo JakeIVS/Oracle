@@ -108,6 +108,7 @@ function CharacterSheet() {
           value={statBonusString(skillScores[skill])}
           id={7 + skill}
           highlightField={highlightField}
+          setHighlightField={setHighlightField}
         />
       </li>
     );

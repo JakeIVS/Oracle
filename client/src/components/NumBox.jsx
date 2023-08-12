@@ -16,7 +16,9 @@ function NumBox({ value, id, highlightField, setHighlightField }) {
     let modifier = parseInt(value);
     let total = roll + modifier;
     console.log(`${roll} (${value}) = ${total}`);
-    setHighlightField(null);
+    if (highlightField === id) {
+      setHighlightField(null);
+    }
   }
 
   return (
