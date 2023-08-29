@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import SavingThrow from './SavingThrow';
+import SavingThrow from '../character_sheet/SavingThrow';
 import NumBtn from './NumBtn';
 import AbilityTemplate from './AbilityTemplate';
 import SaveTemplate from './SaveTemplate';

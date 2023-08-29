@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './index.css';
-import CharacterSheet from './components/CharacterSheet';
+import CharacterSheet from './pages/character_sheet/CharacterSheet';
 import Header from './components/Header';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import ErrorScreen from './components/ErrorScreen';
 import UserDash from './components/UserDash';
-import CharacterList from './components/CharacterList';
+import CharacterList from './pages/character_list/CharacterList';
 import NewCharacter from './components/NewCharacter';
 import HomeScreen from './components/HomeScreen';
 import SideBar from './components/SideBar';
 import NewCampaign from './components/NewCampaign';
-import CampaignList from './components/CampaignList';
-import CampaignControlPanel from './components/CampaignControlPanel';
+import CampaignList from './pages/campaign_list/CampaignList';
+import CampaignControlPanel from './pages/dm_panel/CampaignControlPanel';
 import SocketTest from './components/SocketTest';
 
 function App() {
