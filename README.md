@@ -49,10 +49,22 @@ $ npm run dev
 
 To utilize oracle you must first create an account. Once you are signed in, you will be taken to the user dashboard.
 
+## Create a Campaign
+
+Select the "Create New Campaign" button from the user dashboard. This will take you to a form where you can input the campaign name and a code that players must enter to join the campaign. Your campaign is what you will use to communicate with the players in your game. When they join, they will select a character of theirs to tie to that specific campaign. After they have done that, the owner of the campaign will be able to use the campaign control panel to push rolls to the players in the campaign
+
+### My Campaigns
+
+Selecting this button from the user dashboard will display a list of all campaigns created by the signed-in user. Each card displays the campaign name and number of players currently in the campaign, as well as a delete button to get rid of any campaigns you don't need anymore (WARNING: currently there is no secondary confirmation when clicking the delete button). Clicking on a campaign's card will take you to the campaign control panel.
+
 ## Create a Character
 
 Select the "Create New Character" button from the user dashboard. This will take you to a form where you can input your character's stats and basic info. Each stat score should be a whole number between 1 and 20. At current, there are no validations apart from being between 1 and 20 that the form looks for in the stat selections, but make sure you are working with your DM to generate stats in a proper manner.
 
-## My Characters
+### My Characters
 
 Selecting this button from the user dashboard will display a list of all characters created by the currently signed-in user. Each card displays the character's image, name, level, and class. Additionally, the icon on the right side of the card indicates whether or not the character is currently part of a campaign group. Selecting a card will take you to that specific character's Character Sheet.
+
+### Campaign Control Panel
+
+The campaign control panel contains a blank character sheet template. Clicking on any field indicated with a cube icon will highlight the field on your template as well as on the character sheets of all characters in the selected campaign. This can be used to guide new players to the specific stats and bonuses they need to add to any roll they make.
