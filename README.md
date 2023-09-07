@@ -65,7 +65,7 @@ Select the "Create New Character" button from the user dashboard. This will take
 
 Selecting this button from the user dashboard will display a list of all characters created by the currently signed-in user. Each card displays the character's image, name, level, and class. Additionally, the icon on the right side of the card indicates whether or not the character is currently part of a campaign group. Selecting a card will take you to that specific character's Character Sheet.
 
-### Campaign Control Panel
+## Campaign Control Panel
 
 The campaign control panel contains a blank character sheet template. Clicking on any field indicated with a cube icon will highlight the field on your template as well as on the character sheets of all characters in the selected campaign. This can be used to guide new players to the specific stats and bonuses they need to add to any roll they make.
 
