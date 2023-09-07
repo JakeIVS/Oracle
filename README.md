@@ -68,3 +68,7 @@ Selecting this button from the user dashboard will display a list of all charact
 ### Campaign Control Panel
 
 The campaign control panel contains a blank character sheet template. Clicking on any field indicated with a cube icon will highlight the field on your template as well as on the character sheets of all characters in the selected campaign. This can be used to guide new players to the specific stats and bonuses they need to add to any roll they make.
+
+## Auto-rolling
+
+Clicking on any modifier field on the character sheet will automatically "roll" the selected stat or ability by generating a random number between 1 and 20 and adding whatever value is present in the selected field. At current, the generated value is simply printed to the terminal.
