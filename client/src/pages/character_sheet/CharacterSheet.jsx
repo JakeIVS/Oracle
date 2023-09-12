@@ -13,6 +13,7 @@ function CharacterSheet() {
   const { id } = useParams();
   const [characterData, setCharacterData] = useState();
   const [highlightField, setHighlightField] = useState(null);
+  const [showRoll, setShowRoll] = useState(false);
 
   const inspirationIcon = (
     <svg
