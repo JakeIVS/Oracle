@@ -1,7 +1,13 @@
 import { useState } from 'react';
 
-function InspoBox() {
+function InspoBox({ id, highlightField, setHighlightField }) {
   const [inspired, setInspired] = useState(false);
+  const defaultStyle =
+    'w-fit self-center rounded-md bg-n-light p-2 py-1 text-center text-xl font-semibold outline outline-1 hover:bg-n-dark';
+
+  const pingStyle =
+    'w-fit self-center rounded-md bg-n-light p-2 py-1 text-center text-xl font-semibold shadow-inner shadow-blue-400 outline outline-blue-700 hover:bg-n-dark';
+
   const inspirationIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,10 +25,17 @@ function InspoBox() {
     </svg>
   );
 
+  function handleClick() {
+    setInspired(!inspired);
+    if (highlightField === id) {
+      setHighlightField(null);
+    }
+  }
+
   return (
     <div
       className={highlightField === id ? pingStyle : defaultStyle}
-      onClick={() => setInspired(!inspired)}
+      onClick={handleClick}
     >
       {inspired ? inspirationIcon : null}
     </div>
