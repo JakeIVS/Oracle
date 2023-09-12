@@ -6,6 +6,7 @@ import NumBox from './NumBox';
 import { io } from 'socket.io-client';
 import RollPopup from './RollPopup';
 import InspoBox from './InspoBox';
+import StaticBox from './StaticBox';
 let socket;
 
 function CharacterSheet() {
@@ -183,7 +184,7 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field">
         <h4>Walk Speed</h4>
-        <NumBox
+        <StaticBox
           value={characterData?.speed}
           id={1}
           highlightField={highlightField}
@@ -192,7 +193,7 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field">
         <h4>AC</h4>
-        <NumBox
+        <StaticBox
           value={10 + statBonus(dexterity)}
           id={2}
           highlightField={highlightField}
@@ -223,7 +224,7 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field col-span-2">
         <h4>Health</h4>
-        <NumBox
+        <StaticBox
           value={`${characterData?.current_hp} / ${characterData?.hit_point_max}`}
           id={5}
           highlightField={highlightField}
@@ -337,7 +338,7 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field">
         <h4>Spell Save DC</h4>
-        <NumBox
+        <StaticBox
           value={
             8 +
             profBonus(characterData?.level) +
