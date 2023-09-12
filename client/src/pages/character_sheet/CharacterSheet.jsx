@@ -4,6 +4,7 @@ import AbilityScore from './AbilityScore';
 import SavingThrow from './SavingThrow';
 import NumBox from './NumBox';
 import { io } from 'socket.io-client';
+import RollPopup from './RollPopup';
 let socket;
 
 function CharacterSheet() {
@@ -412,6 +413,7 @@ function CharacterSheet() {
           }
         ></ul>
       </div>
+      <RollPopup />
     </div>
   );
 }
