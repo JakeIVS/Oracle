@@ -5,6 +5,7 @@ import SavingThrow from './SavingThrow';
 import NumBox from './NumBox';
 import { io } from 'socket.io-client';
 import RollPopup from './RollPopup';
+import InspoBox from './InspoBox';
 let socket;
 
 function CharacterSheet() {
@@ -231,8 +232,7 @@ function CharacterSheet() {
       </div>
       <div className="sheet-field">
         <h4>Inspiration</h4>
-        <NumBox
-          value={inspirationIcon}
+        <InspoBox
           id={6}
           highlightField={highlightField}
           setHighlightField={setHighlightField}
