@@ -8,6 +8,8 @@ function InspoBox({ id, highlightField, setHighlightField }) {
   const pingStyle =
     'w-fit self-center rounded-md bg-n-light p-2 py-1 text-center text-xl font-semibold shadow-inner shadow-blue-400 outline outline-blue-700 hover:bg-n-dark';
 
+  const active = 'h-6 w-6 stroke-black';
+  const inactive = 'h-6 w-6 stroke-gray-300';
   const inspirationIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +17,7 @@ function InspoBox({ id, highlightField, setHighlightField }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="h-6 w-6"
+      className={inspired ? active : inactive}
     >
       <path
         strokeLinecap="round"
@@ -37,7 +39,7 @@ function InspoBox({ id, highlightField, setHighlightField }) {
       className={highlightField === id ? pingStyle : defaultStyle}
       onClick={handleClick}
     >
-      {inspired ? inspirationIcon : null}
+      {inspirationIcon}
     </div>
   );
 }
