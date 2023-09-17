@@ -1,6 +1,6 @@
 # Introduction
 
-## ![Demo Video](https://www.loom.com/share/10e7adfbc2ff4a6e9ef9484d69db2730?sid=942e7937-2580-4536-9382-6f97eb62eb92)
+## [Demo Video](https://www.loom.com/share/10e7adfbc2ff4a6e9ef9484d69db2730?sid=942e7937-2580-4536-9382-6f97eb62eb92)
 
 Oracle is a react application used for virtual tabletop gaming. At current, it is only compatible with Dungeons and Dragons 5th Edition.
 
