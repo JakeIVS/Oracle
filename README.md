@@ -1,5 +1,7 @@
 # Introduction
 
+## ![Demo Video](https://www.loom.com/share/10e7adfbc2ff4a6e9ef9484d69db2730?sid=942e7937-2580-4536-9382-6f97eb62eb92)
+
 Oracle is a react application used for virtual tabletop gaming. At current, it is only compatible with Dungeons and Dragons 5th Edition.
 
 Oracle allows you to create a campaign or character for a campaign. Once created, the players can view a generated character sheet with all of their character's stats, and the player running the campaign can highlight specific fields on the players' character sheets, helping guide newer players through the gameplay.
